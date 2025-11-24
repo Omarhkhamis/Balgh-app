@@ -1,0 +1,54 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { google } from 'googleapis';
+
+export async function POST(req: NextRequest) {
+    try {
+        const credentialsJson = process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS;
+        const spreadsheetId = process.env.SPREADSHEET_ID;
+
+        if (!credentialsJson || !spreadsheetId) {
+            return NextResponse.json({ error: 'Missing Google Sheets credentials or Spreadsheet ID' }, { status: 500 });
+        }
+
+        const body = await req.json();
+        const {
+            timestamp,
+            inputText,
+            classification,
+            violationType,
+            riskLevel,
+            targetCountry,
+            modelScore
+        } = body;
+
+        const credentials = JSON.parse(credentialsJson);
+        const auth = new google.auth.GoogleAuth({
+            credentials,
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+        });
+
+        const sheets = google.sheets({ version: 'v4', auth });
+
+        await sheets.spreadsheets.values.append({
+            spreadsheetId,
+            range: 'Sheet1!A:G', // Assuming Sheet1 and columns A-G
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+                values: [[
+                    timestamp || new Date().toISOString(),
+                    inputText,
+                    classification,
+                    violationType,
+                    riskLevel,
+                    targetCountry,
+                    modelScore
+                ]],
+            },
+        });
+
+        return NextResponse.json({ success: true });
+    } catch (error: any) {
+        console.error('Error in /api/log-analysis:', error);
+        return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    }
+}
