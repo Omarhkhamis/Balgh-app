@@ -103,3 +103,4 @@ MIT License - انظر [LICENSE](LICENSE) للتفاصيل.
 ---
 
 صُنع بـ ❤️ لمكافحة خطاب الكراهية
+# balghapp
