@@ -7,7 +7,7 @@
 - 🤖 **تحليل ذكي**: استخدام Gemini 2.0 Flash مع إطار HSIE-Syria v2.0
 - 🌍 **واجهة عربية**: واجهة كاملة بالعربية مع دعم RTL
 - ⚖️ **تقارير قانونية**: إنشاء تقارير لـ 9 دول (سوريا، ألمانيا، فرنسا، إلخ)
-- 📊 **قاعدة بيانات**: حفظ التحليلات في Supabase
+- 📊 **تسجيل البيانات**: حفظ التحليلات في Google Sheets
 - 🗺️ **خريطة تفاعلية**: عرض القوانين حسب الدولة
 - 📱 **متجاوب**: يعمل على جميع الأجهزة
 
@@ -27,35 +27,17 @@ npm install
 # Gemini AI
 GEMINI_API_KEY=your_gemini_api_key_here
 
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
-
-# Google Sheets (اختياري - للنسخ الاحتياطي)
+# Google Sheets (للتسجيل)
 GOOGLE_SERVICE_ACCOUNT_CREDENTIALS={"type": "service_account", ...}
 SPREADSHEET_ID=your_google_sheet_id_here
 ```
 
-### 3. إعداد قاعدة البيانات
+**كيفية الحصول على المفاتيح:**
+- `GEMINI_API_KEY`: من [Google AI Studio](https://makersuite.google.com/app/apikey)
+- `GOOGLE_SERVICE_ACCOUNT_CREDENTIALS`: من Google Cloud Console
+- `SPREADSHEET_ID`: من رابط Google Sheet
 
-1. أنشئ حساب على [Supabase](https://supabase.com)
-2. أنشئ مشروع جديد
-3. في SQL Editor، شغّل:
-
-```sql
-CREATE TABLE analyses (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  content TEXT NOT NULL,
-  classification TEXT NOT NULL,
-  risk_level TEXT NOT NULL,
-  reasoning TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  user_ip TEXT
-);
-```
-
-### 4. تشغيل المشروع
+### 3. تشغيل المشروع
 
 ```bash
 # Development
@@ -72,7 +54,7 @@ npm start
 
 - **Frontend**: Next.js 15, React, TypeScript, Tailwind CSS
 - **AI**: Google Gemini 2.0 Flash
-- **Database**: Supabase (PostgreSQL)
+- **Data Logging**: Google Sheets API
 - **Deployment**: Vercel (موصى به)
 
 ## 📚 الوثائق
@@ -84,8 +66,8 @@ npm start
 ## 🔒 الأمان
 
 - ✅ جميع المفاتيح السرية في `.env.local` (غير مرفوعة على Git)
-- ✅ Row Level Security في Supabase
 - ✅ معالجة آمنة للبيانات الحساسة
+- ✅ تشفير الاتصالات
 
 ## 📄 الترخيص
 
