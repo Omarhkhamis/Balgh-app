@@ -1,4 +1,4 @@
-interface AnalysisResult {
+export interface AnalysisResult {
     classification: string;
     severity_score: number;
     risk_level: string;
@@ -6,6 +6,10 @@ interface AnalysisResult {
     violation_type: string;
     target_group: string;
     text: string;
+    legal_citation?: string;
+    reasoning?: string;
+    vulnerability_score?: number;
+    context_score?: number;
 }
 
 export interface LegalInfo {
@@ -123,40 +127,6 @@ const LEGAL_DATA: Record<string, LegalInfo> = {
         report_link: 'https://www.rcmp-grc.gc.ca/en/how-report-crime'
     }
 };
-
-function translateClassification(classification: string, lang: string): string {
-    const map: Record<string, Record<string, string>> = {
-        'Hate Speech': {
-            ar: 'خطاب كراهية',
-            de: 'Hassrede',
-            fr: 'Discours de haine',
-            tr: 'Nefret Söylemi'
-        },
-        'Incitement to Violence': {
-            ar: 'تحريض على العنف',
-            de: 'Aufstachelung zur Gewalt',
-            fr: 'Incitation à la violence',
-            tr: 'Şiddete Tahrik'
-        },
-        'Safe': {
-            ar: 'محتوى سليم',
-            de: 'Sicher',
-            fr: 'Sûr',
-            tr: 'Güvenli'
-        },
-    };
-    return map[classification]?.[lang] || classification;
-}
-
-function translateRisk(risk: string, lang: string): string {
-    const map: Record<string, Record<string, string>> = {
-        'Low': { ar: 'منخفض', de: 'Niedrig', fr: 'Faible', tr: 'Düşük' },
-        'Medium': { ar: 'متوسط', de: 'Mittel', fr: 'Moyen', tr: 'Orta' },
-        'High': { ar: 'مرتفع', de: 'Hoch', fr: 'Élevé', tr: 'Yüksek' },
-        'Critical': { ar: 'حرج', de: 'Kritisch', fr: 'Critique', tr: 'Kritik' },
-    };
-    return map[risk]?.[lang] || risk;
-}
 
 export function getLegalInfo(country: string): LegalInfo {
     return LEGAL_DATA[country] || LEGAL_DATA['Syria'];

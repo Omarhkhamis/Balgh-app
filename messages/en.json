@@ -1,0 +1,77 @@
+{
+    "header": {
+        "brand": {
+            "title": "بَلِّغ",
+            "subtitle": "Combating Hate Speech and Violence"
+        },
+        "topBar": {
+            "about": "About Us",
+            "vision": "Vision",
+            "methodology": "Methodology"
+        },
+        "nav": {
+            "home": "Home",
+            "legal": "Legal Protection",
+            "protection": "Digital Protection",
+            "monitoring": "Reports & Research",
+            "training": "Specialized Training",
+            "news": "News",
+            "faq": "FAQ"
+        },
+        "cta": "Start Analysis",
+        "menuLabel": "Menu"
+    },
+    "home": {
+        "hero": {
+            "title": "Help Make the Digital Space Safer",
+            "subtitle": "An analysis tool based on a scientific methodology developed by the initiative team, combining artificial intelligence and human review"
+        },
+        "form": {
+            "label": "Enter the text to analyze:",
+            "placeholder": "Paste any text, comment, post or paragraph you want to check…",
+            "charCount": "{count} characters",
+            "submitButton": "Start Text Analysis",
+            "analyzingButton": "Analyzing..."
+        },
+        "trustIndicators": {
+            "security": "Secure & Encrypted Analysis",
+            "methodology": "Certified Scientific Methodology",
+            "review": "Specialized Human Review"
+        }
+    },
+    "results": {
+        "title": "Analysis Results",
+        "classification": "Classification",
+        "riskLevel": "Risk Level",
+        "reasoning": "Reasoning",
+        "actions": "Recommended Actions",
+        "reportButton": "Legal Report",
+        "feedbackButton": "Report Error",
+        "categories": {
+            "hate_speech": "Hate Speech",
+            "harassment": "Harassment",
+            "safe": "Safe"
+        },
+        "risk": {
+            "high": "High",
+            "medium": "Medium",
+            "low": "Low"
+        }
+    },
+    "feedback": {
+        "title": "Report Incorrect Classification",
+        "description": "Help us improve the system's accuracy",
+        "correctCategory": "What should the correct classification be?",
+        "explanation": "Explanation (optional)",
+        "explanationPlaceholder": "Why do you think this classification is incorrect?",
+        "submitButton": "Submit Feedback",
+        "cancelButton": "Cancel",
+        "submittingButton": "Submitting...",
+        "successMessage": "Thank you! Your feedback has been submitted successfully",
+        "errorMessage": "An error occurred, please try again later"
+    },
+    "metadata": {
+        "title": "Violence and Hate Speech Combat Initiative",
+        "description": "An AI-powered analysis tool for detecting and classifying hate speech"
+    }
+}

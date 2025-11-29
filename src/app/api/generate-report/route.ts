@@ -1,69 +1,265 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getLegalInfo } from '@/lib/report-generator';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 export async function POST(req: Request) {
     try {
-        const { jurisdiction, text, reasoning_ar, severity_score, legal_citation } = await req.json();
+        const { jurisdiction, text, reasoning_ar, severity_score } = await req.json();
 
-        // Map countries to their official languages
-        const countryLanguages: { [key: string]: string } = {
-            'Syria': 'Arabic',
-            'Germany': 'German',
-            'Turkey': 'Turkish',
-            'France': 'French',
-            'USA': 'English',
-            'UK': 'English',
-            'Canada': 'English',
-            'Netherlands': 'Dutch',
-            'Sweden': 'Swedish',
-            'Austria': 'German',
-            'Belgium': 'French or Dutch',
-            'Switzerland': 'German, French, or Italian',
-            'Spain': 'Spanish'
+        // Get detailed legal information for the jurisdiction
+        const legalInfo = getLegalInfo(jurisdiction);
+
+        // For Syrian reports - use simplified template
+        if (jurisdiction === 'Syria') {
+            // Use Arabic Hijri calendar for date
+            const currentDate = new Date().toLocaleDateString('ar-SA-u-ca-islamic', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            const syrianPrompt = `أنت نموذج ذكاء صناعي متخصص في إنتاج تقارير قانونية عربية مختصرة للنيابة العامة السورية.
+
+**المهمة:**
+إنتاج إخبار قانوني مختصر وسلس للنيابة العامة، لا يتجاوز صفحة واحدة، بأسلوب سردي متدفق.
+
+**البيانات المتوفرة:**
+- النص المخالف: "${text}"
+- التحليل: ${reasoning_ar}
+- درجة الخطورة: ${severity_score}/10
+- التاريخ: ${currentDate}
+
+**القواعد الإلزامية:**
+
+1. **الأسلوب:**
+   - صياغة سردية انسيابية (لا فقرات منفصلة)
+   - لا تستخدم خطوط الفصل (___)
+   - لا تستخدم أي تنسيق markdown
+   - نص عادي plain text فقط
+   - مختصر جداً - صفحة واحدة كحد أقصى
+
+2. **المصطلحات:**
+   - استخدم "إخبار" وليس "بلاغ"
+   - "النيابة العامة" كجهة مختصة
+   - لغة قانونية رسمية مختصرة
+
+3. **المواد القانونية:**
+   - المادة /25/ أصول محاكمات جزائية
+   - المادة /287/ عقوبات (النعرات الطائفية)
+   - المادة /31/ قانون الجرائم الإلكترونية
+
+**الهيكل المطلوب (سردي متدفق):**
+
+${currentDate}
+
+إلى السيد النائب العام الموقر
+
+الموضوع: إخبار عن خطاب كراهية وتحريض إلكتروني
+
+تحية طيبة وبعد،
+
+عملاً بأحكام المادة /25/ من قانون أصول المحاكمات الجزائية، أتقدم بهذا الإخبار للإبلاغ عن محتوى رقمي يشكل جريمة خطاب كراهية وتحريض.
+
+${text ? `النص المخالف: "${text}"` : 'المحتوى المخالف: محتوى مرئي (صورة أو فيديو)'}
+
+وبعد التحليل القانوني تبيّن أن هذا المحتوى ${reasoning_ar}، ويشكل مخالفة صريحة للمادة /287/ من قانون العقوبات السوري (التحريض على النعرات الطائفية أو العنصرية)، وللمادة /31/ من القانون رقم 20 لعام 2023 الخاص بالجرائم الإلكترونية.
+
+معلومات المنشور:
+- اسم الحساب: [يُرجى إضافة اسم الحساب]
+- رابط المنشور: [يُرجى إضافة رابط المنشور]
+
+لذلك ألتمس من عدالتكم التفضل بالتحقيق في هذا الإخبار واتخاذ الإجراءات القانونية اللازمة بحق مرتكبي الفعل، والأمر بإزالة المحتوى المخالف من المنصة الإلكترونية.
+
+تفضلوا بقبول فائق الاحترام والتقدير.
+
+مقدم الإخبار: [الاسم]
+
+ملاحظة: هذا التقرير مُنتج آلياً ويتطلب مراجعة قانونية قبل التقديم الرسمي.
+
+**تعليمات نهائية:**
+- اكتب التقرير بنفس الأسلوب السردي المتدفق أعلاه
+- التاريخ يجب أن يكون بالأشهر الهجرية العربية (مثلاً: ٢٦ جمادى الأولى ١٤٤٦)
+- إذا كان النص موجوداً، اكتبه بالضبط كما هو بعد "النص المخالف:"
+- إذا لم يكن هناك نص (محتوى مرئي)، اكتب "محتوى مرئي (صورة أو فيديو)"
+- لا تذكر درجة الخطورة ${severity_score} في التقرير أبداً
+- اجعل قسم "معلومات المنشور" في سطرين منفصلين
+- اجعل جملة "لذلك ألتمس..." في سطر منفصل
+- لا تستخدم خطوط فصل أو عناوين فرعية
+- اجعله مختصراً جداً
+- لا تتجاوز صفحة واحدة
+- نص عادي بدون تنسيق`;
+
+            const model = genAI.getGenerativeModel({
+                model: 'gemini-2.0-flash',
+                generationConfig: {
+                    temperature: 0.2,
+                    maxOutputTokens: 2000,
+                }
+            });
+
+            const result = await model.generateContent(syrianPrompt);
+            const report = result.response.text();
+
+            return NextResponse.json({
+                report,
+                legalInfo: {
+                    citation: 'المادة 287 من قانون العقوبات السوري',
+                    authority: legalInfo.authority,
+                    report_link: legalInfo.report_link
+                }
+            });
+        }
+
+        // For other countries - use the previous comprehensive approach
+        const langMap: { [key: string]: string } = {
+            'ar': 'Arabic',
+            'de': 'German',
+            'tr': 'Turkish',
+            'fr': 'French',
+            'en': 'English',
+            'nl': 'Dutch',
+            'sv': 'Swedish',
+            'es': 'Spanish'
         };
 
-        const targetLanguage = countryLanguages[jurisdiction] || 'English';
+        const targetLanguage = langMap[legalInfo.lang] || 'English';
+        const currentDate = new Date().toLocaleDateString(legalInfo.lang === 'ar' ? 'ar-EG' : 'en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
 
-        const prompt = `
-        You are a legal expert specializing in hate speech laws in ${jurisdiction}.
-        Generate a formal legal report (complaint/notification) to the authorities regarding the following hate speech incident.
-        
-        **CRITICAL REQUIREMENT: The ENTIRE report MUST be written in ${targetLanguage}. Do NOT use any other language.**
-        
-        **Incident Details:**
-        - Content: "${text}"
-        - Analysis (Arabic): ${reasoning_ar}
-        - Severity: ${severity_score}/10
-        - Legal Basis: ${legal_citation || 'Hate Speech Laws'}
+        const internationalPrompt = `You are an expert legal consultant specializing in hate speech laws in ${jurisdiction}.
 
-        **Requirements:**
-        1. Language: The report MUST be 100% in ${targetLanguage} (the official language of ${jurisdiction}).
-        2. Format: Formal legal letter structure (To the Public Prosecutor/Platform Safety Team).
-        3. Tone: Professional, objective, and legally grounded.
-        4. Content: 
-           - Clearly state the violation
-           - Reference the specific law (${legal_citation || 'applicable hate speech laws'})
-           - Request immediate action (removal/investigation)
-        5. Do NOT include any markdown formatting (no ** or #). Just plain text.
-        6. The report should include:
-           - Official header
-           - Sender and recipient information
-           - Subject of the complaint
-           - Detailed description of the violation
-           - Legal basis
-           - Request and recommendations
-           - Signature and date
-        
-        **REMINDER: Write the ENTIRE report in ${targetLanguage} only.**
-        `;
+**CRITICAL INSTRUCTIONS:**
+1. Write the ENTIRE report in ${targetLanguage} ONLY
+2. Use plain text format - NO markdown formatting (no **, #, etc.)
+3. Keep the report CONCISE and PROFESSIONAL
+4. Follow the exact structure below
 
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-        const result = await model.generateContent(prompt);
+**Case Details:**
+- Content: \"${text}\"
+- Analysis: ${reasoning_ar}
+- Severity: ${severity_score}/10
+- Jurisdiction: ${jurisdiction}
+- Law: ${legalInfo.citation}
+- Authority: ${legalInfo.authority}
+- Date: ${currentDate}
+
+**REQUIRED REPORT STRUCTURE:**
+
+[Date in target language format]
+À: ${legalInfo.authority}
+
+INFORMATIONS SUR LE PLAIGNANT
+[Use appropriate translation: "COMPLAINANT INFORMATION" / "INFORMATIONEN ZUM BESCHWERDEFÜHRER" / "معلومات مقدم البلاغ"]
+Nom: [Complainant / مقدم البلاغ / Anzeigenerstatter]
+Qualité: Observateur de la société civile / Membre du public
+[Use appropriate translation: "Capacity: Civil society observer / Member of the public"]
+
+OBJET
+[Use appropriate translation: "SUBJECT" / "BETREFF" / "الموضوع"]
+Signalement de propos haineux / Incitation à la haine en ligne
+[Use appropriate translation: "Report of Hate Speech / Online Incitement"]
+
+INTRODUCTION
+[Formal greeting in ${targetLanguage}]
+
+[One paragraph stating the purpose: reporting hate speech content that violates ${legalInfo.citation}]
+
+DESCRIPTION DÉTAILLÉE
+[Use appropriate translation: "DETAILED DESCRIPTION" / "DETAILLIERTE BESCHREIBUNG" / "الوصف التفصيلي"]
+
+**Le contenu incriminé:**
+[If text exists: Quote the original text EXACTLY: \"${text}\"]
+[If text is EMPTY: Write "Contenu vidéo/image (voir description ci-dessous)" or equivalent in ${targetLanguage}]
+
+**Traduction:**
+[Only if original text is in different language: Provide translation to ${targetLanguage}]
+[If text is empty or already in ${targetLanguage}: SKIP this subsection entirely]
+
+**Analyse:**
+[Explain WHY this is hate speech. Use this structure:]
+"L'auteur de cette publication incite explicitement à [ACTION] à l'encontre de [TARGET_GROUP]. Ce discours est particulièrement alarmant compte tenu du contexte syrien actuel. En tant que pays émergeant d'un conflit majeur et marqué par de profondes tensions confessionnelles et ethniques, la Syrie est un terrain extrêmement volatile. Une telle incitation présente un risque réel et immédiat de déclencher des violations massives des droits de l'homme et des violences physiques à grande échelle."
+
+[Adapt this to ${targetLanguage} and explain the specific hate speech elements from the analysis: ${reasoning_ar}]
+
+FONDEMENT JURIDIQUE
+[Use appropriate translation: "LEGAL BASIS" / "RECHTSGRUNDLAGE" / "الأساس القانوني"]
+
+[Write in ${targetLanguage}:]
+This content violates ${legalInfo.citation}.
+
+[Translate to ${targetLanguage}. Examples:]
+- French: "Cette publication viole ${legalInfo.citation}."
+- German: "Diese Veröffentlichung verstößt gegen ${legalInfo.citation}."
+- English: "This post violates ${legalInfo.citation}."
+- Dutch: "Deze publicatie schendt ${legalInfo.citation}."
+- Swedish: "Detta inlägg bryter mot ${legalInfo.citation}."
+- Turkish: "Bu gönderi ${legalInfo.citation} ihlal etmektedir."
+
+INFORMATIONS SUR LE CONTENU SIGNALÉ
+[Use appropriate translation: "REPORTED CONTENT INFORMATION" / "INFORMATIONEN ZUM GEMELDETEN INHALT"]
+• Nom du compte / Identifiant : [Account Name - to be specified]
+• Plateforme : [Platform - to be specified]
+• Date de publication : ${currentDate}
+• Lien de la publication : [Link - to be specified]
+• Preuve (Capture d'écran) : [À joindre / To be attached / Beizufügen]
+
+DEMANDE
+[Use appropriate translation: "REQUEST" / "ANTRAG" / "الطلب"]
+[Brief paragraph requesting investigation, content removal, and legal action]
+
+[Formal closing in ${targetLanguage}]
+
+---
+AVERTISSEMENT / DISCLAIMER
+[Write the disclaimer ONCE in ${targetLanguage}:]
+
+Examples for reference:
+- French: "Ce rapport a été généré automatiquement à l'aide d'outils d'analyse juridique basés sur l'IA. Bien que l'analyse du contenu et les références juridiques soient exactes, une révision humaine est recommandée avant la soumission officielle. Généré le: ${currentDate}"
+- German: "Dieser Bericht wurde automatisch mit KI-gestützten Rechtsanalysetools erstellt. Obwohl die Inhaltsanalyse und Rechtsgrundlagen korrekt sind, wird eine menschliche Überprüfung vor der offiziellen Einreichung empfohlen. Erstellt am: ${currentDate}"
+- English: "This report was generated automatically using AI-powered legal analysis tools. While the content analysis and legal references are accurate, human review is recommended for formal submission. Generated on: ${currentDate}"
+
+[Then add screenshot reminder ONCE in ${targetLanguage}:]
+
+Examples for reference:
+- French: "IMPORTANT: N'oubliez pas de joindre une capture d'écran de la publication lors du dépôt de ce signalement."
+- German: "WICHTIG: Vergessen Sie nicht, beim Einreichen dieser Meldung einen Screenshot der Veröffentlichung beizufügen."
+- English: "IMPORTANT: Remember to attach a screenshot of the post when filing this report."
+
+**CRITICAL FINAL CHECKS:**
+- Every word must be in ${targetLanguage}
+- NO markdown formatting (no **, no #, no bullets with *)
+- Text direction: LEFT-TO-RIGHT (LTR) for all languages except Arabic
+- Keep it concise (1-2 pages maximum)
+- Professional legal tone
+- Include all required sections above
+- Write disclaimer and screenshot reminder ONLY ONCE each (no duplicates)
+
+Write the complete report now:`;
+
+        const model = genAI.getGenerativeModel({
+            model: 'gemini-2.0-flash',
+            generationConfig: {
+                temperature: 0.3, // Lower temperature for more consistent, formal output
+                maxOutputTokens: 2048,
+            }
+        });
+
+        const result = await model.generateContent(internationalPrompt);
         const report = result.response.text();
 
-        return NextResponse.json({ report });
+        return NextResponse.json({
+            report,
+            legalInfo: {
+                citation: legalInfo.citation,
+                authority: legalInfo.authority,
+                report_link: legalInfo.report_link
+            }
+        });
     } catch (error) {
         console.error('Report generation error:', error);
         return NextResponse.json({ error: 'Failed to generate report' }, { status: 500 });

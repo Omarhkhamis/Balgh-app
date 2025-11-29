@@ -32,30 +32,20 @@ export default function AboutSection() {
             <div className="max-w-6xl mx-auto px-6">
                 {/* Main Intro */}
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl font-bold text-gray-900 mb-6">
-                        من نحن
-                    </h2>
                     <div className="max-w-4xl mx-auto">
                         <p className="text-xl text-gray-700 leading-relaxed mb-6">
                             نحن <strong>مبادرة سورية مستقلة</strong> تعمل عند تقاطع البحث الاجتماعي، والعمل الحقوقي، والتقنيات الرقمية، بهدف مواجهة خطاب الكراهية والعنف في الفضاءين الرقمي والمجتمعي في سوريا ومناطق اللجوء.
                         </p>
-                        <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                            انبثقت المبادرة من حاجة واضحة لجهة مستقلة ترصد خطاب الكراهية بشكل منهجي، وتزوّد الباحثين والمنظمات ببيانات دقيقة لصياغة سياسات وبرامج حماية أكثر فعالية.
-                        </p>
+
                         <div className="bg-green-50 border-r-4 border-green-600 p-6 rounded-lg mt-6">
                             <p className="text-lg text-gray-800 font-semibold italic">
-                                "نؤمن بأن الكلمة ليست مجرّد رأي، بل قوة تسهم في بناء مجتمع متماسك أو في إشعال عنف جديد"
+                                &quot;نؤمن بأن الكلمة ليست مجرّد رأي، بل قوة تسهم في بناء مجتمع متماسك أو في إشعال عنف جديد&quot;
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Slogan */}
-                <div className="text-center mb-16 bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-2xl">
-                    <p className="text-2xl font-bold text-gray-900">
-                        بَلِّغ: رصد، تحليل، حماية لمجتمع سوري آمن
-                    </p>
-                </div>
+
 
                 {/* Vision & Mission */}
                 <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -129,13 +119,7 @@ export default function AboutSection() {
                     </div>
                 </div>
 
-                {/* Impact */}
-                <div className="bg-gradient-to-r from-blue-50 to-green-50 p-10 rounded-3xl">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">أثرنا</h3>
-                    <p className="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
-                        من خلال التقارير، التدريبات، والرصد المستمر، أصبحت المبادرة <strong>مرجعًا للعديد من المنظمات السورية والدولية</strong> العاملة في قضايا الحماية، العدالة الانتقالية، وبناء السلام. كما أسهمت بياناتنا في فهم أعمق لديناميكيات السرديات الطائفية والتمييزية في سوريا، وتقديم أدوات جديدة للتعامل معها.
-                    </p>
-                </div>
+
             </div>
         </section>
     );

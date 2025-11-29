@@ -27,7 +27,7 @@ export default function MethodologySection() {
         },
         {
             number: 3,
-            title: 'التحقق البشري',
+            title: 'التحقق',
             description: 'مراجعة بشرية متخصصة للسياق، اللهجة، النبرة، لمنع أخطاء الذكاء الاصطناعي',
             details: [
                 'مراجعة السياق الكامل للمحتوى',
@@ -51,7 +51,7 @@ export default function MethodologySection() {
         },
         {
             number: 5,
-            title: 'إنتاج المعرفة والحلول',
+            title: 'الفعل وانتاج المعرفة',
             description: 'تحويل البيانات إلى تقارير، دراسات، مواد تدريبية، وتوصيات سياساتية',
             details: [
                 'تقارير دورية وخرائط حرارية',
@@ -82,7 +82,7 @@ export default function MethodologySection() {
                 {/* Principle */}
                 <div className="bg-gradient-to-r from-green-50 to-blue-50 border-r-4 border-green-600 p-8 rounded-2xl mb-16">
                     <p className="text-xl text-gray-800 font-bold text-center">
-                        "لا ننتج أداة تقنية فقط، بل إطارًا معرفيًا لفهم كيف تُنتج الكراهية، وكيف يمكن للمجتمع السوري التعامل معها بمهنية وعدالة ووعي سياقي."
+                        &quot;لا ننتج أداة تقنية فقط، بل إطارًا معرفيًا لفهم كيف تُنتج الكراهية، وكيف يمكن للمجتمع السوري التعامل معها بمهنية وعدالة ووعي سياقي.&quot;
                     </p>
                 </div>
 
@@ -93,28 +93,28 @@ export default function MethodologySection() {
                     </h3>
                     <div className="flex justify-center items-center gap-4 mb-12 flex-wrap">
                         <div className="bg-blue-100 text-blue-800 px-6 py-3 rounded-full font-bold">جمع البيانات</div>
-                        <span className="text-2xl text-gray-400">→</span>
+                        <span className="text-2xl text-gray-400">←</span>
                         <div className="bg-blue-100 text-blue-800 px-6 py-3 rounded-full font-bold">التصنيف والتحليل</div>
-                        <span className="text-2xl text-gray-400">→</span>
-                        <div className="bg-green-100 text-green-800 px-6 py-3 rounded-full font-bold">التحقق البشري</div>
-                        <span className="text-2xl text-gray-400">→</span>
+                        <span className="text-2xl text-gray-400">←</span>
+                        <div className="bg-green-100 text-green-800 px-6 py-3 rounded-full font-bold">التحقق</div>
+                        <span className="text-2xl text-gray-400">←</span>
                         <div className="bg-green-100 text-green-800 px-6 py-3 rounded-full font-bold">المعالجة القانونية</div>
-                        <span className="text-2xl text-gray-400">→</span>
-                        <div className="bg-purple-100 text-purple-800 px-6 py-3 rounded-full font-bold">إنتاج المعرفة</div>
+                        <span className="text-2xl text-gray-400">←</span>
+                        <div className="bg-purple-100 text-purple-800 px-6 py-3 rounded-full font-bold">الفعل وانتاج المعرفة</div>
                     </div>
                 </div>
 
                 {/* Stages Detail */}
                 <div className="space-y-8">
-                    {stages.map((stage, index) => (
+                    {stages.map((stage) => (
                         <div key={stage.number} className={`bg-white p-8 rounded-2xl shadow-lg border-l-4 ${stage.color === 'blue' ? 'border-blue-500' :
-                                stage.color === 'green' ? 'border-green-500' : 'border-purple-500'
+                            stage.color === 'green' ? 'border-green-500' : 'border-purple-500'
                             } hover:shadow-xl transition-all`}>
                             <div className="flex items-start gap-6">
                                 {/* Number */}
                                 <div className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold ${stage.color === 'blue' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
-                                        stage.color === 'green' ? 'bg-gradient-to-br from-green-500 to-green-600' :
-                                            'bg-gradient-to-br from-purple-500 to-purple-600'
+                                    stage.color === 'green' ? 'bg-gradient-to-br from-green-500 to-green-600' :
+                                        'bg-gradient-to-br from-purple-500 to-purple-600'
                                     } shadow-lg`}>
                                     {stage.number}
                                 </div>
@@ -124,8 +124,8 @@ export default function MethodologySection() {
                                     <div className="flex items-center gap-3 mb-3">
                                         <h4 className="text-2xl font-bold text-gray-900">{stage.title}</h4>
                                         <span className={`text-xs px-3 py-1 rounded-full font-bold ${stage.color === 'blue' ? 'bg-blue-100 text-blue-800' :
-                                                stage.color === 'green' ? 'bg-green-100 text-green-800' :
-                                                    'bg-purple-100 text-purple-800'
+                                            stage.color === 'green' ? 'bg-green-100 text-green-800' :
+                                                'bg-purple-100 text-purple-800'
                                             }`}>
                                             {stage.category}
                                         </span>
@@ -135,7 +135,7 @@ export default function MethodologySection() {
                                         {stage.details.map((detail, idx) => (
                                             <li key={idx} className="flex items-start gap-2 text-gray-600">
                                                 <span className={`mt-1 ${stage.color === 'blue' ? 'text-blue-500' :
-                                                        stage.color === 'green' ? 'text-green-500' : 'text-purple-500'
+                                                    stage.color === 'green' ? 'text-green-500' : 'text-purple-500'
                                                     }`}>•</span>
                                                 <span>{detail}</span>
                                             </li>

@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import { AnalysisResult } from '@/lib/report-generator';
+import FeedbackModal from '@/components/FeedbackModal';
+import { COUNTRY_LEGAL_DATA } from '@/lib/countryReportingData';
 
-interface ResultsDisplayProps {
-    result: any;
-}
+
 
 const SUPPORTED_COUNTRIES = [
     "Syria", "Germany", "Turkey", "France", "USA", "UK", "Canada",
@@ -25,7 +26,7 @@ const SYRIAN_GROUPS = [
     "أخرى"
 ];
 
-export default function ResultsDisplay({ result }: ResultsDisplayProps) {
+export default function ResultsDisplay({ result }: { result: AnalysisResult }) {
     const [reportMode, setReportMode] = useState<'self' | 'initiative' | null>(null);
     const [selectedCountry, setSelectedCountry] = useState("");
     const [legalReport, setLegalReport] = useState("");
@@ -36,6 +37,10 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
     const [postLink, setPostLink] = useState("");
     const [reporterCountry, setReporterCountry] = useState("");
     const [targetGroup, setTargetGroup] = useState("");
+
+    // Feedback modal state
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+
 
     const handleGenerateReport = async () => {
         if (!selectedCountry) return;
@@ -207,11 +212,30 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
                         </p>
                     </div>
 
+                    {/* Compact Feedback Section */}
+                    <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-4">
+                        <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2 flex-1">
+                                <span className="text-2xl">💡</span>
+                                <div>
+                                    <h4 className="font-bold text-gray-900 text-sm">هل النتيجة دقيقة؟</h4>
+                                    <p className="text-xs text-gray-600">ساعدنا في تحسين النظام</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setIsFeedbackModalOpen(true)}
+                                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-all shadow-sm hover:shadow-md text-sm whitespace-nowrap"
+                            >
+                                إبلاغ عن خطأ
+                            </button>
+                        </div>
+                    </div>
+
                     {/* Share Button */}
                     <div className="mt-6">
                         <button
                             onClick={() => {
-                                const shareText = `🔍 نتيجة تحليل خطاب الكراهية\n\n📊 التصنيف: ${getCategoryLabel(result.classification)}\n⚠️ مستوى الخطر: ${getRiskLabel(result.risk_level)}\n📈 الحدة: ${result.severity_score}/10\n📍 الاستضعاف: ${vulnerabilityScore}/5\n🌍 السياق: ${contextScore}/4\n\n✍️ التحليل:\n${(result.reasoning_ar || result.reasoning).substring(0, 200)}...\n\n🔗 مبادرة بلاغ لمكافحة خطاب الكراهية`;
+                                const shareText = `🔍 نتيجة تحليل خطاب الكراهية\n\n📊 التصنيف: ${getCategoryLabel(result.classification)}\n⚠️ مستوى الخطر: ${getRiskLabel(result.risk_level)}\n📈 الحدة: ${result.severity_score}/10\n📍 الاستضعاف: ${vulnerabilityScore}/5\n🌍 السياق: ${contextScore}/4\n\n✍️ التحليل:\n${(result.reasoning_ar || result.reasoning || '').substring(0, 200)}...\n\n🔗 مبادرة بلاغ لمكافحة خطاب الكراهية`;
 
                                 if (navigator.share) {
                                     navigator.share({
@@ -303,36 +327,68 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
                                         </select>
                                     </div>
 
-                                    {selectedCountry && (
+                                    {selectedCountry && COUNTRY_LEGAL_DATA[selectedCountry] && (
                                         <>
-                                            <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4">
-                                                <h5 className="font-bold text-purple-900 mb-2">السند القانوني</h5>
-                                                <p className="text-purple-800">
-                                                    {selectedCountry === 'Syria' && 'المادة 287 من قانون العقوبات السوري'}
-                                                    {selectedCountry === 'Germany' && 'NetzDG - Network Enforcement Act'}
-                                                    {selectedCountry === 'Turkey' && 'TCK 216 - Turkish Penal Code'}
-                                                    {selectedCountry === 'France' && 'Loi Avia - French Hate Speech Law'}
-                                                    {!['Syria', 'Germany', 'Turkey', 'France'].includes(selectedCountry) && 'قوانين مكافحة خطاب الكراهية'}
-                                                </p>
-                                            </div>
+                                            {/* Compact Legal Info Card */}
+                                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 border-2 border-indigo-200 rounded-xl p-5 shadow-sm">
+                                                {/* Header */}
+                                                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-indigo-200">
+                                                    <span className="text-3xl">{COUNTRY_LEGAL_DATA[selectedCountry].flag}</span>
+                                                    <div className="flex-1">
+                                                        <h5 className="font-bold text-indigo-900 text-base">المعلومات القانونية</h5>
+                                                        <p className="text-xs text-indigo-600">{COUNTRY_LEGAL_DATA[selectedCountry].countryNameAr}</p>
+                                                    </div>
+                                                </div>
 
-                                            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
-                                                <h5 className="font-bold text-blue-900 mb-2">جهة التبليغ</h5>
-                                                <p className="text-blue-800 mb-3">
-                                                    {selectedCountry === 'Syria' && 'النيابة العامة السورية'}
-                                                    {selectedCountry === 'Germany' && 'Federal Office of Justice (BfJ)'}
-                                                    {selectedCountry === 'Turkey' && 'Turkish Prosecutor\'s Office'}
-                                                    {selectedCountry === 'France' && 'PHAROS Platform'}
-                                                    {!['Syria', 'Germany', 'Turkey', 'France'].includes(selectedCountry) && 'السلطات المختصة'}
-                                                </p>
-                                                <a
-                                                    href="#"
-                                                    className="text-blue-600 hover:text-blue-800 font-medium underline"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    رابط التبليغ المباشر ←
-                                                </a>
+                                                {/* Compact Content in 2 Columns */}
+                                                <div className="grid md:grid-cols-2 gap-4">
+                                                    {/* Left: Laws */}
+                                                    <div className="bg-white bg-opacity-70 p-3 rounded-lg">
+                                                        <h6 className="font-bold text-indigo-900 mb-2 text-xs flex items-center gap-1">
+                                                            <span>⚖️</span>
+                                                            <span>القوانين</span>
+                                                        </h6>
+                                                        <ul className="space-y-1">
+                                                            {COUNTRY_LEGAL_DATA[selectedCountry].lawsAr.map((law, idx) => (
+                                                                <li key={idx} className="text-indigo-800 text-xs leading-tight">
+                                                                    • {law}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    {/* Right: Agencies */}
+                                                    <div className="bg-white bg-opacity-70 p-3 rounded-lg">
+                                                        <h6 className="font-bold text-indigo-900 mb-2 text-xs flex items-center gap-1">
+                                                            <span>🏛️</span>
+                                                            <span>جهات التبليغ</span>
+                                                        </h6>
+                                                        <div className="space-y-2">
+                                                            {COUNTRY_LEGAL_DATA[selectedCountry].agencies.map((agency, idx) => (
+                                                                <div key={idx} className="text-xs">
+                                                                    <div className="font-semibold text-gray-900 mb-1">{agency.nameAr}</div>
+                                                                    <a
+                                                                        href={agency.website}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
+                                                                    >
+                                                                        <span>🔗</span>
+                                                                        <span>رابط مباشر</span>
+                                                                        <span>↗</span>
+                                                                    </a>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Definition at bottom */}
+                                                <div className="mt-3 pt-3 border-t border-indigo-100">
+                                                    <p className="text-indigo-800 text-xs leading-relaxed italic">
+                                                        💡 {COUNTRY_LEGAL_DATA[selectedCountry].definitionAr}
+                                                    </p>
+                                                </div>
                                             </div>
 
                                             <button
@@ -449,6 +505,16 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
                     </div>
                 )}
             </div>
+
+            {/* Feedback Modal */}
+            <FeedbackModal
+                isOpen={isFeedbackModalOpen}
+                onClose={() => setIsFeedbackModalOpen(false)}
+                originalText={result.text || ''}
+                aiClassification={result.classification}
+                aiRiskLevel={result.risk_level}
+                severityScore={result.severity_score || 0}
+            />
         </div>
     );
 }

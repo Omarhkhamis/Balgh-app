@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
                         target_group: { type: SchemaType.STRING },
                     },
                     required: ["classification", "severity_score", "risk_level", "reasoning_ar"],
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 } as any,
             },
         });
@@ -41,9 +42,10 @@ export async function POST(req: NextRequest) {
         const analysis = JSON.parse(responseText);
 
         return NextResponse.json(analysis);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error in /api/classify:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         console.error('Error details:', JSON.stringify(error, null, 2));
-        return NextResponse.json({ error: error.message || 'Internal Server Error', details: error.toString() }, { status: 500 });
+        return NextResponse.json({ error: errorMessage || 'Internal Server Error', details: String(error) }, { status: 500 });
     }
 }

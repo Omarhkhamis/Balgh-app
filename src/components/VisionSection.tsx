@@ -15,7 +15,7 @@ export default function VisionSection() {
                     <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg border border-green-100">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">🌟 الرؤية</h3>
                         <p className="text-gray-700 leading-relaxed text-lg">
-                            فضاء رقمي عربي خالٍ من خطاب العنف والكراهية، يسوده الاحترام والتعايش السلمي، ويُحاسب فيه المحرضون وفق القانون.
+                            فضاء رقمي خالٍ من خطاب العنف والكراهية، يسوده الاحترام والتعايش السلمي، ويُحاسب فيه المحرضون وفق القانون.
                         </p>
                     </div>
 
@@ -23,7 +23,7 @@ export default function VisionSection() {
                     <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg border border-blue-100">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">🎯 الرسالة</h3>
                         <p className="text-gray-700 leading-relaxed text-lg">
-                            رصد وتوثيق ومساءلة خطاب العنف والكراهية في الفضاء الرقمي العربي، باستخدام التكنولوجيا والمنهجية العلمية، لحماية المجتمعات وتعزيز السلام.
+                            رصد وتوثيق ومساءلة خطاب العنف والكراهية في الفضاء الرقمي، باستخدام التكنولوجيا والمنهجية العلمية، لحماية المجتمعات وتعزيز السلام.
                         </p>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ export default function VisionSection() {
                         <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
                             <div className="text-4xl mb-3">📊</div>
                             <h4 className="text-xl font-bold text-gray-900 mb-2">الرصد الشامل</h4>
-                            <p className="text-gray-700">بناء قاعدة بيانات شاملة لخطاب الكراهية والعنف في الفضاء الرقمي العربي</p>
+                            <p className="text-gray-700">بناء قاعدة بيانات شاملة لخطاب الكراهية والعنف في الفضاء الرقمي</p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
                             <div className="text-4xl mb-3">⚖️</div>
