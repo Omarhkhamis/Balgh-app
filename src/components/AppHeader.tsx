@@ -49,10 +49,10 @@ export default function AppHeader() {
     return (
         <header className={`sticky top-0 z-50 bg-white transition-shadow border-b border-gray-100 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
             <div className="container mx-auto px-6">
-                <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '70px' }}>
+                <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '60px' }}>
                     {/* Brand Text Only - Enhanced */}
                     <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
-                        <span className="text-3xl md:text-5xl font-bold" style={{ color: '#1E8C4E' }}>
+                        <span className="text-2xl md:text-5xl font-bold" style={{ color: '#1E8C4E' }}>
                             بَلِّغ
                         </span>
                         <span className="hidden md:block text-base text-gray-600 font-medium">
@@ -78,11 +78,11 @@ export default function AppHeader() {
                         </button>
                     </div>
 
-                    {/* Mobile/Tablet: Menu Button + CTA */}
+                    {/* Mobile/Tablet: Menu Button only on mobile, CTA on tablet+ */}
                     <div className="flex xl:hidden items-center gap-3">
                         <Link
                             href={`/${locale}/#analyze`}
-                            className="px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold text-white text-sm md:text-base transition-all hover:shadow-xl shadow-md"
+                            className="hidden md:block px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold text-white text-sm md:text-base transition-all hover:shadow-xl shadow-md"
                             style={{ backgroundColor: '#1E8C4E' }}
                         >
                             {t('cta')}
