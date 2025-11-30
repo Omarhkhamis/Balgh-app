@@ -20,6 +20,7 @@ export default function AppHeader() {
     }, []);
 
     const navLinks = [
+        { href: `/${locale}`, label: t('nav.home'), icon: '🏠', description: locale === 'ar' ? 'الصفحة الرئيسية' : 'Home Page' },
         { href: `/${locale}/legal`, label: t('nav.legal'), icon: '⚖️', description: locale === 'ar' ? 'آليات التبليغ وفق القانون' : 'Legal reporting mechanisms' },
         { href: `/${locale}/protection`, label: t('nav.protection'), icon: '🛡️', description: locale === 'ar' ? 'كيف تحمي نفسك رقمياً' : 'Digital safety guide' },
         { href: `/${locale}/training`, label: t('nav.training'), icon: '🎓', description: locale === 'ar' ? 'ورش عمل وتدريبات' : 'Workshops and training' },
@@ -30,7 +31,6 @@ export default function AppHeader() {
     const mobileNavLinks = [
         { href: `/${locale}`, label: t('nav.home'), icon: '🏠', description: locale === 'ar' ? 'الصفحة الرئيسية' : 'Home Page' },
         { href: `/${locale}/about`, label: t('topBar.about'), icon: '👤', description: locale === 'ar' ? 'من نحن' : 'About Us' },
-        { href: `/${locale}/vision`, label: t('topBar.vision'), icon: '🎯', description: locale === 'ar' ? 'رؤيتنا' : 'Our Vision' },
         { href: `/${locale}/methodology`, label: t('topBar.methodology'), icon: '🧭', description: locale === 'ar' ? 'المنهجية' : 'Methodology' },
         { href: `/${locale}/legal`, label: t('nav.legal'), icon: '⚖️', description: locale === 'ar' ? 'الإطار القانوني' : 'Legal Framework' },
         { href: `/${locale}/protection`, label: t('nav.protection'), icon: '🛡️', description: locale === 'ar' ? 'الحماية الرقمية' : 'Digital Protection' },
@@ -51,7 +51,7 @@ export default function AppHeader() {
             <div className="container mx-auto px-6">
                 <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '60px' }}>
                     {/* Brand Text Only - Enhanced */}
-                    <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
+                    <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all px-2 ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
                         <span className="text-2xl md:text-5xl font-bold" style={{ color: '#1E8C4E' }}>
                             بَلِّغ
                         </span>
@@ -60,28 +60,26 @@ export default function AppHeader() {
                         </span>
                     </Link>
 
-                    {/* Desktop: Language Switcher Only - Enhanced */}
-                    <div className="hidden xl:flex items-center gap-3">
+                    {/* Desktop: Language Switcher - Enhanced */}
+                    <div className="hidden xl:flex items-center gap-8">
                         <button
                             onClick={() => {
                                 const newLocale = locale === 'ar' ? 'en' : 'ar';
-                                const currentPath = window.location.pathname.replace(`/${locale}`, '');
-                                window.location.replace(`/${newLocale}${currentPath || '/'}`);
+                                window.location.href = `/${newLocale}`;
                             }}
-                            className="px-4 py-2 rounded-lg text-sm font-bold text-green-600 hover:text-green-700 transition-colors flex items-center gap-2 hover:bg-green-50"
-                            title={locale === 'ar' ? 'Switch to English' : 'التبديل للعربية'}
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all font-semibold border border-gray-200 hover:border-gray-300"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                             </svg>
-                            <span>{locale === 'ar' ? 'EN' : 'AR'}</span>
+                            <span className="text-sm">{locale === 'ar' ? 'EN' : 'AR'}</span>
                         </button>
                     </div>
 
                     {/* Mobile/Tablet: Menu Button only on mobile, CTA on tablet+ */}
                     <div className="flex xl:hidden items-center gap-3">
                         <Link
-                            href={`/${locale}/#analyze`}
+                            href={`/${locale}/analyze`}
                             className="hidden md:block px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold text-white text-sm md:text-base transition-all hover:shadow-xl shadow-md"
                             style={{ backgroundColor: '#1E8C4E' }}
                         >
@@ -117,9 +115,8 @@ export default function AppHeader() {
                 <div className="container mx-auto px-6">
                     <div className="flex items-center justify-center gap-2 py-4 flex-wrap">
                         {[
-                            { href: `/${locale}/about`, label: t('topBar.about'), icon: '👤' },
-                            { href: `/${locale}/vision`, label: t('topBar.vision'), icon: '🎯' },
-                            { href: `/${locale}/methodology`, label: t('topBar.methodology'), icon: '🧭' },
+                            { href: `/${locale}/about`, label: t('topBar.about') },
+                            { href: `/${locale}/methodology`, label: t('topBar.methodology') },
                             { href: `/${locale}/legal`, label: t('nav.legal'), icon: '⚖️' },
                             { href: `/${locale}/protection`, label: t('nav.protection'), icon: '🛡️' },
                             { href: `/${locale}/training`, label: t('nav.training'), icon: '🎓' },
