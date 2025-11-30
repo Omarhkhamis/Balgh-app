@@ -26,10 +26,17 @@ export default function AppHeader() {
         { href: `/${locale}/faq`, label: t('nav.faq'), icon: '❓', description: locale === 'ar' ? 'إجابات على أسئلتك' : 'Answers to your questions' },
     ];
 
-    // Full nav links for mobile menu (includes home)
+    // Full nav links for mobile menu (includes all pages)
     const mobileNavLinks = [
         { href: `/${locale}`, label: t('nav.home'), icon: '🏠', description: locale === 'ar' ? 'الصفحة الرئيسية' : 'Home Page' },
-        { href: `/${locale}/faq`, label: t('nav.faq'), icon: '❓', description: locale === 'ar' ? 'إجابات على أسئلتك' : 'Answers to your questions' },
+        { href: `/${locale}/about`, label: t('topBar.about'), icon: '👤', description: locale === 'ar' ? 'من نحن' : 'About Us' },
+        { href: `/${locale}/vision`, label: t('topBar.vision'), icon: '🎯', description: locale === 'ar' ? 'رؤيتنا' : 'Our Vision' },
+        { href: `/${locale}/methodology`, label: t('topBar.methodology'), icon: '🧭', description: locale === 'ar' ? 'المنهجية' : 'Methodology' },
+        { href: `/${locale}/legal`, label: t('nav.legal'), icon: '⚖️', description: locale === 'ar' ? 'الإطار القانوني' : 'Legal Framework' },
+        { href: `/${locale}/protection`, label: t('nav.protection'), icon: '🛡️', description: locale === 'ar' ? 'الحماية الرقمية' : 'Digital Protection' },
+        { href: `/${locale}/training`, label: t('nav.training'), icon: '🎓', description: locale === 'ar' ? 'التدريب' : 'Training' },
+        { href: `/${locale}/news`, label: t('nav.news'), icon: '📰', description: locale === 'ar' ? 'الأخبار' : 'News' },
+        { href: `/${locale}/faq`, label: t('nav.faq'), icon: '❓', description: locale === 'ar' ? 'الأسئلة الشائعة' : 'FAQ' },
     ];
 
     const isActive = (href: string) => {
@@ -42,13 +49,13 @@ export default function AppHeader() {
     return (
         <header className={`sticky top-0 z-50 bg-white transition-shadow border-b border-gray-100 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
             <div className="container mx-auto px-6">
-                <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '90px' }}>
+                <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '70px' }}>
                     {/* Brand Text Only - Enhanced */}
                     <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
-                        <span className="text-5xl font-bold" style={{ color: '#1E8C4E' }}>
+                        <span className="text-3xl md:text-5xl font-bold" style={{ color: '#1E8C4E' }}>
                             بَلِّغ
                         </span>
-                        <span className="text-base text-gray-600 font-medium">
+                        <span className="hidden md:block text-base text-gray-600 font-medium">
                             {t('brand.subtitle')}
                         </span>
                     </Link>
@@ -75,7 +82,7 @@ export default function AppHeader() {
                     <div className="flex xl:hidden items-center gap-3">
                         <Link
                             href={`/${locale}/#analyze`}
-                            className="px-6 py-3 rounded-lg font-bold text-white text-base transition-all hover:shadow-xl shadow-md"
+                            className="px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold text-white text-sm md:text-base transition-all hover:shadow-xl shadow-md"
                             style={{ backgroundColor: '#1E8C4E' }}
                         >
                             {t('cta')}
@@ -105,8 +112,8 @@ export default function AppHeader() {
                 </div>
             </div>
 
-            {/* Secondary Navigation Bar - Enhanced */}
-            <div className="border-t border-gray-100 bg-white">
+            {/* Secondary Navigation Bar - Hidden on mobile */}
+            <div className="hidden md:block border-t border-gray-100 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="flex items-center justify-center gap-2 py-4 flex-wrap">
                         {[

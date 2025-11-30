@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div id="analyze" className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <AppHeader />
-      <main className="container mx-auto px-4 py-16">
+      <main className="container mx-auto px-4 py-8 md:py-16">
         <AnalysisForm onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
       </main>
     </div>

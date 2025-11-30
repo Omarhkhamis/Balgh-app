@@ -21,13 +21,13 @@ export default function AnalysisForm({ onAnalyze, isAnalyzing }: AnalysisFormPro
     };
 
     return (
-        <div className="min-h-[85vh] flex items-center justify-center px-4">
+        <div className="min-h-[70vh] md:min-h-[85vh] flex items-center justify-center px-4">
             <div className="w-full max-w-3xl mx-auto">
                 {/* Hero Section - Ultra Clean & Centered */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-8 md:mb-16">
                     {/* Main Heading - Maximum prominence with green accent */}
                     <div className="mb-8">
-                        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight whitespace-nowrap">
+                        <h1 className="text-3xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
                             {t('hero.title')}
                         </h1>
                         {/* Green accent line */}
@@ -35,7 +35,7 @@ export default function AnalysisForm({ onAnalyze, isAnalyzing }: AnalysisFormPro
                     </div>
 
                     {/* Subtitle - Enhanced readability */}
-                    <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base md:text-xl lg:text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
                         {t('hero.subtitle')}
                     </p>
                 </div>
@@ -49,7 +49,7 @@ export default function AnalysisForm({ onAnalyze, isAnalyzing }: AnalysisFormPro
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                             placeholder={t('form.placeholder')}
-                            className={`w-full h-72 p-8 text-lg border-2 rounded-2xl resize-none bg-white text-gray-900 placeholder-gray-400 transition-all duration-300 ease-out ${isFocused
+                            className={`w-full h-48 md:h-72 p-4 md:p-8 text-base md:text-lg border-2 rounded-2xl resize-none bg-white text-gray-900 placeholder-gray-400 transition-all duration-300 ease-out ${isFocused
                                 ? 'border-green-500 shadow-2xl shadow-green-100 scale-[1.01]'
                                 : 'border-gray-200 shadow-xl hover:border-gray-300 hover:shadow-2xl'
                                 }`}
