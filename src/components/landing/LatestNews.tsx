@@ -1,18 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { newsItems, NEWS_CATEGORIES } from '@/data/news';
 
 export default function LatestNews() {
     const locale = useLocale();
+    const t = useTranslations('landing.news');
 
     // Get latest 3 news items
     const latestNews = newsItems.slice(0, 3);
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('ar-SA', {
+        return date.toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
@@ -25,10 +26,10 @@ export default function LatestNews() {
                 {/* Section Title */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        آخر الأخبار والموارد
+                        {t('title')}
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        تابع آخر التحديثات والموارد التعليمية
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -54,7 +55,7 @@ export default function LatestNews() {
                                         {item.videoUrl && (
                                             <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
                                                 <span>▶</span>
-                                                <span>فيديو</span>
+                                                <span>{t('videoBadge')}</span>
                                             </div>
                                         )}
                                     </div>
@@ -85,7 +86,7 @@ export default function LatestNews() {
 
                                     {/* Read More */}
                                     <div className="flex items-center gap-2 text-green-600 font-semibold text-sm group-hover:gap-3 transition-all">
-                                        <span>اقرأ المزيد</span>
+                                        <span>{t('readMore')}</span>
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                         </svg>
@@ -102,7 +103,7 @@ export default function LatestNews() {
                         href={`/${locale}/news`}
                         className="inline-block px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold rounded-lg transition-colors"
                     >
-                        عرض جميع الأخبار →
+                        {t('viewAll')} {locale === 'ar' ? '←' : '→'}
                     </Link>
                 </div>
             </div>

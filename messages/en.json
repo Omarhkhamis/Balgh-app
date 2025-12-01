@@ -11,6 +11,9 @@
         },
         "nav": {
             "home": "Home",
+            "about": "About Us",
+            "vision": "Vision",
+            "methodology": "Methodology",
             "legal": "Legal Protection",
             "protection": "Digital Protection",
             "monitoring": "Reports & Research",
@@ -20,6 +23,79 @@
         },
         "cta": "Start Analysis",
         "menuLabel": "Menu"
+    },
+    "landing": {
+        "hero": {
+            "title": "Help Make the Digital Space Safer",
+            "subtitle": "An analysis tool based on a scientific methodology developed by the initiative team, combining artificial intelligence and human review",
+            "cta1": "Start Analysis",
+            "cta2": "Explore Services"
+        },
+        "trustIndicators": {
+            "ai": {
+                "title": "AI-Powered",
+                "subtitle": "Advanced and accurate analysis"
+            },
+            "countries": {
+                "title": "9 Supported Countries",
+                "subtitle": "Arab and European"
+            },
+            "free": {
+                "title": "100% Free",
+                "subtitle": "Safe and encrypted"
+            }
+        },
+        "services": {
+            "title": "Our Services",
+            "subtitle": "Discover a comprehensive range of services designed to protect and support you",
+            "legal": {
+                "title": "Legal Protection",
+                "description": "Legal framework and reporting mechanisms",
+                "cta": "Learn More"
+            },
+            "protection": {
+                "title": "Digital Protection",
+                "description": "Tools and guides for online safety",
+                "cta": "Learn More"
+            },
+            "training": {
+                "title": "Specialized Training",
+                "description": "Educational programs and workshops",
+                "cta": "Learn More"
+            },
+            "tool": {
+                "title": "Analysis Tool",
+                "description": "AI-powered hate speech detection",
+                "cta": "Try Now"
+            },
+            "features": "✓ AI-powered analysis • ✓ Support for 9 countries • ✓ Safe and 100% free"
+        },
+        "news": {
+            "title": "Latest News & Resources",
+            "subtitle": "Follow the latest updates and educational resources",
+            "videoBadge": "Video",
+            "readMore": "Read More",
+            "viewAll": "View All News"
+        }
+    },
+    "footer": {
+        "brand": {
+            "description": "Independent initiative to counter hate speech and violence in Syrian digital space"
+        },
+        "quickLinks": {
+            "title": "Quick Links"
+        },
+        "services": {
+            "title": "Our Services"
+        },
+        "contact": {
+            "title": "Contact Us",
+            "socialMedia": "Social Media",
+            "cta": "Start Analysis"
+        },
+        "copyright": "© 2024 Counter Hate Speech and Violence Initiative - All Rights Reserved",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions"
     },
     "home": {
         "hero": {
@@ -69,6 +145,286 @@
         "submittingButton": "Submitting...",
         "successMessage": "Thank you! Your feedback has been submitted successfully",
         "errorMessage": "An error occurred, please try again later"
+    },
+    "legal": {
+        "title": "Legal Protection",
+        "description": "This section outlines the legal framework for hate speech in multiple countries. The goal is to help users understand their rights, identify the official authorities responsible for receiving reports, and distinguish between what constitutes illegal speech and what falls under freedom of expression.",
+        "tabs": {
+            "hateSpeech": "Hate Speech Legally",
+            "documentation": "How to Document the Crime?",
+            "laws": "Applicable Laws",
+            "reporting": "Reporting Mechanism",
+            "faq": "Frequently Asked Questions"
+        },
+        "hateSpeechContent": {
+            "definitionTitle": "Legal definition of Hate Speech",
+            "definitionText": "is any expression that incites violence, discrimination, or hostility against individuals or groups based on their identity or belonging, such as:",
+            "identityCategories": [
+                "race or ethnicity",
+                "religion or belief",
+                "nationality or national origin",
+                "gender or gender identity",
+                "disability",
+                "political affiliation",
+                "social class"
+            ],
+            "keyElements": "Key elements:",
+            "keyElementsText": "Hate speech must include incitement or a call for violence/discrimination, not just the expression of an opposing opinion.",
+            "whatWeMonitorTitle": "What do we legally monitor?",
+            "whatWeMonitor": [
+                "calls for extermination or collective violence",
+                "intentional misinformation that harms a specific group"
+            ],
+            "whatWeDoNotTitle": "What is not subject to legal follow-up?",
+            "whatWeDoNot": [
+                "personal disputes not related to hate speech",
+                "individual insults without incitement",
+                "non-public content such as private messages",
+                "reports without evidence or a verifiable link"
+            ],
+            "differenceTitle": "Hate Speech vs. Freedom of Expression",
+            "protectedTitle": "Protected freedom of expression",
+            "protectedItems": [
+                "objective criticism of ideas and beliefs",
+                "expressing political opposition",
+                "constructive critique of policies and practices",
+                "non-offensive satire and humor",
+                "academic or research-based discussion"
+            ],
+            "notProtectedTitle": "Not protected (Hate Speech)",
+            "notProtectedItems": [
+                "incitement to violence against a group",
+                "calls for discrimination or exclusion",
+                "defamation of a group based on identity",
+                "direct or indirect threats",
+                "spreading false information to stir hatred"
+            ],
+            "boundaryTitle": "The boundary:",
+            "boundaryText": "Freedom of expression ends where incitement to hatred or violence begins. You may criticize ideas, but you cannot incite harm against people because of who they are."
+        },
+        "documentationContent": {
+            "screenshotTitle": "Proper Legal Screenshot Capture",
+            "screenshotIntro": "A screenshot is the primary piece of evidence in any report. It must contain complete information to prove the violation and preserve the context.",
+            "mustIncludeTitle": "What a valid screenshot must include",
+            "mustInclude": [
+                "the full text of the offending content",
+                "the account or page name clearly visible",
+                "date and time of publication",
+                "interaction metrics (likes, shares, comments)",
+                "post link (URL) if available",
+                "profile picture of the content publisher"
+            ],
+            "mistakesTitle": "Common documentation mistakes",
+            "mistakes": [
+                "cutting part of the text or removing context",
+                "account name not visible",
+                "unclear or low-quality capture",
+                "missing date and time",
+                "taking the screenshot after the post is deleted",
+                "failing to save the original post link"
+            ],
+            "proTip": "Pro tip:",
+            "proTipText": "Always take a full-page screenshot rather than cropping a portion. Full context increases credibility and legal admissibility.",
+            "archivingTitle": "Archiving and professional preservation",
+            "archivingIntro": "In addition to the screenshot, use archiving tools to create a permanent version of the content.",
+            "archiveTools": [
+                {
+                    "name": "Archive.today",
+                    "icon": "🌐",
+                    "description": "Instant archiving of any webpage",
+                    "link": "https://archive.today"
+                },
+                {
+                    "name": "Wayback Machine",
+                    "icon": "⏰",
+                    "description": "Historical internet archive",
+                    "link": "https://web.archive.org"
+                },
+                {
+                    "name": "Perma.cc",
+                    "icon": "🔗",
+                    "description": "Permanent link creation for webpage content",
+                    "link": "https://perma.cc"
+                }
+            ],
+            "visitWebsite": "Visit website ↗",
+            "archivingStepsTitle": "Archiving steps",
+            "archivingSteps": [
+                "Copy the link of the violating post",
+                "Open one of the archiving tools listed above",
+                "Paste the link into the archive submission field",
+                "Save the archive link generated afterward",
+                "Attach the archive link along with your report"
+            ],
+            "storageTitle": "Secure evidence storage",
+            "whereToStoreTitle": "Where to store evidence?",
+            "whereToStore": [
+                {
+                    "title": "encrypted cloud storage",
+                    "desc": "Google Drive, Dropbox with 2FA"
+                },
+                {
+                    "title": "external hard drive",
+                    "desc": "local offline backup"
+                },
+                {
+                    "title": "email a copy to yourself",
+                    "desc": "with timestamp"
+                }
+            ],
+            "securityTitle": "Security guidelines",
+            "securityTips": [
+                "use strong and unique passwords",
+                "enable two-factor authentication (2FA)",
+                "do not share evidence publicly",
+                "keep multiple backups in separate locations",
+                "record the date and time each file is saved"
+            ],
+            "retentionTitle": "Retention period:",
+            "retentionText": "keep evidence for at least one year from the reporting date, as it may be needed for legal follow-up or appeal.",
+            "quickTipsTitle": "Quick documentation tips",
+            "quickTips": [
+                "document immediately — content may be deleted",
+                "take multiple screenshots from different scroll points",
+                "save comment sections if relevant to context",
+                "record screen-video if the content is animated",
+                "save the publisher's profile link",
+                "document direct threats separately"
+            ]
+        },
+        "reportingContent": {
+            "insideSyriaTitle": "Reporting inside Syria",
+            "authorityTitle": "Competent Authority",
+            "publicProsecution": "Syrian Public Prosecution",
+            "officialBody": "Official body for receiving reports",
+            "websiteLabel": "Website:",
+            "methodLabel": "Method:",
+            "methodText": "Submit an official report in person or through a lawyer",
+            "tipLabel": "Tip:",
+            "tipText": "Keep a copy of the report and the registration number for follow-up.",
+            "outsideSyriaTitle": "Reporting outside Syria (Asylum Countries)",
+            "outsideSyriaText": "You can report hate speech crimes in your country of residence. Check the <strong class=\"text-green-600\">'Applicable Laws' tab</strong> to see the laws and competent authorities in each country.",
+            "countries": {
+                "germany": "Germany",
+                "france": "France",
+                "sweden": "Sweden",
+                "belgium": "Belgium",
+                "netherlands": "Netherlands",
+                "turkey": "Turkey"
+            },
+            "digitalPlatformsTitle": "Reporting via Digital Platforms",
+            "reportCenter": "Reporting Center",
+            "workflowTitle": "How do we handle dangerous reports?",
+            "workflowSteps": {
+                "step1": "Receive Report",
+                "step2": "Automated Analysis",
+                "step3": "Legal Review",
+                "step4": "Referral to Authorities",
+                "stepLabel": "Step"
+            },
+            "limitationsTitle": "Limitations of Baligh Initiative",
+            "limitationsText": "The Baligh Initiative does not provide direct legal representation. Our role is limited to analyzing reports, providing initial advice, and directing victims to competent authorities and accredited lawyers."
+        },
+        "lawsContent": {
+            "title": "International Laws Against Hate Speech",
+            "description": "The legal framework for combating hate speech varies from country to country, but most democratic nations criminalize incitement to violence and hatred against individuals or groups based on protected characteristics such as race, religion, nationality, or ethnicity.",
+            "sectionInfo": "<strong class=\"text-green-700\">In this section:</strong> You will find detailed legal information for each country, including applicable laws, the definition of hate speech, and the official authorities responsible for receiving reports. Click on any country in the map below to see details.",
+            "syria": "Syria",
+            "syriaLaw": "Article 307 + Article 31",
+            "europe": "Europe",
+            "europeCount": "9 countries available",
+            "otherCountries": "Other Countries",
+            "otherList": "Turkey, Canada, USA"
+        },
+        "faqContent": {
+            "mistakesTitle": "Common Reporting Mistakes",
+            "mistakes": [
+                {
+                    "mistake": "Reporting without sufficient evidence",
+                    "solution": "Ensure you provide clear screenshots, links, and the date of publication."
+                },
+                {
+                    "mistake": "Confusing personal opinion with hate speech",
+                    "solution": "Ensure there is clear incitement to violence or discrimination."
+                },
+                {
+                    "mistake": "Reporting content from private messages",
+                    "solution": "Hate speech must be public for legal follow-up."
+                },
+                {
+                    "mistake": "Not saving evidence securely",
+                    "solution": "Use archiving tools and keep multiple copies."
+                },
+                {
+                    "mistake": "Reporting long after content deletion",
+                    "solution": "Document immediately, and use archiving tools before deletion."
+                }
+            ],
+            "crimeTitle": "When is content a crime?",
+            "clearCrimeTitle": "Clear Crime",
+            "clearCrimeList": [
+                "Direct death threats",
+                "Explicit call for violence",
+                "Incitement to genocide",
+                "Publishing personal data for harm",
+                "Encouraging hate crimes"
+            ],
+            "grayAreaTitle": "Gray Area",
+            "grayAreaList": [
+                "Harsh satire of a group",
+                "Broad negative generalizations",
+                "Spreading harmful rumors",
+                "Using offensive language",
+                "Controversial content"
+            ],
+            "grayAreaTip": "Depends on context and intent",
+            "notCrimeTitle": "Not a Crime",
+            "notCrimeList": [
+                "Criticizing ideas or beliefs",
+                "Criticizing government policies",
+                "Objective academic discussion",
+                "Non-offensive satire",
+                "Expressing opposing opinions"
+            ],
+            "faqTitle": "Frequently Asked Questions",
+            "faqs": [
+                {
+                    "q": "Can I report anonymously?",
+                    "a": "Yes, you can report anonymously through our platform. However, for official legal follow-up, authorities may need your identity as a witness."
+                },
+                {
+                    "q": "What if the content is in a private message?",
+                    "a": "Private content is difficult to pursue legally unless it constitutes a direct threat. We recommend reporting directly to the police in cases of personal threats."
+                },
+                {
+                    "q": "Do I need a lawyer to report?",
+                    "a": "Not necessary for the initial report. However, if it escalates to a legal case, you may need to consult a lawyer specializing in hate speech cases."
+                },
+                {
+                    "q": "How long does the investigation take?",
+                    "a": "It varies by country and authority. It may take from weeks to several months. Keep the report number for follow-up."
+                },
+                {
+                    "q": "What if the content was deleted before reporting?",
+                    "a": "If you documented the content (screenshot + archiving), you can report. Saved evidence is sufficient for legal follow-up."
+                },
+                {
+                    "q": "Can I report old content?",
+                    "a": "Yes, but it is better to report immediately. Some laws have statutes of limitations. Check the law in your country."
+                },
+                {
+                    "q": "What happens after reporting?",
+                    "a": "Authorities review the report, investigate the content, and may request additional information. The publisher may be summoned for questioning or legal action taken."
+                },
+                {
+                    "q": "Does reporting guarantee content removal?",
+                    "a": "Not necessarily. Removal depends on platform policies and local laws. However, official reporting increases the chances of action being taken."
+                }
+            ],
+            "helpTitle": "Didn't find an answer?",
+            "helpText": "Contact us directly and we will help you understand the appropriate legal procedures for your case.",
+            "contactButton": "Contact Us"
+        }
     },
     "metadata": {
         "title": "Violence and Hate Speech Combat Initiative",

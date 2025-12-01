@@ -204,6 +204,31 @@ export default function ResultsDisplay({ result }: { result: AnalysisResult }) {
                         </div>
                     </div>
 
+                    {/* Determinants Section */}
+                    {(result.target_group || result.intent_signal) && (
+                        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 mb-6">
+                            <h3 className="font-bold text-gray-900 mb-4 text-center">المحددات المكتشفة</h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {result.target_group && (
+                                    <div className="bg-white rounded-lg p-4 text-center shadow-sm">
+                                        <div className="text-xs text-gray-500 mb-2">الفئة المستهدفة</div>
+                                        <div className="text-lg font-bold text-purple-700">
+                                            {result.target_group}
+                                        </div>
+                                    </div>
+                                )}
+                                {result.intent_signal && (
+                                    <div className="bg-white rounded-lg p-4 text-center shadow-sm">
+                                        <div className="text-xs text-gray-500 mb-2">إشارة النية</div>
+                                        <div className="text-lg font-bold text-pink-700">
+                                            {result.intent_signal}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
                     {/* Detailed Analysis */}
                     <div className="bg-gray-50 rounded-xl p-6">
                         <h3 className="font-bold text-gray-900 mb-3">التحليل التفصيلي</h3>

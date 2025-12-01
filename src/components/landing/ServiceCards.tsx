@@ -50,7 +50,7 @@ export default function ServiceCards() {
                         {t('title')}
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        اكتشف مجموعة شاملة من الخدمات المصممة لحمايتك ودعمك
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -79,7 +79,7 @@ export default function ServiceCards() {
 
                             {/* CTA */}
                             <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all">
-                                <span>{service.id === 'tool' ? 'جرّب الآن' : 'اعرف المزيد'}</span>
+                                <span>{t(`${service.id}.cta`)}</span>
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -91,7 +91,7 @@ export default function ServiceCards() {
                 {/* Additional Info */}
                 <div className="mt-16 text-center">
                     <p className="text-gray-600 text-lg mb-4">
-                        ✓ تحليل يعتمد على الذكاء الاصطناعي • ✓ دعم 9 دول • ✓ آمن ومجاني 100%
+                        {t('features')}
                     </p>
                 </div>
             </div>

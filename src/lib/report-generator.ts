@@ -10,6 +10,7 @@ export interface AnalysisResult {
     reasoning?: string;
     vulnerability_score?: number;
     context_score?: number;
+    intent_signal?: string;
 }
 
 export interface LegalInfo {

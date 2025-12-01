@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 export default function HeroSection() {
     const locale = useLocale();
     const t = useTranslations('landing.hero');
+    const tTrust = useTranslations('landing.trustIndicators');
 
     return (
         <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-white via-gray-50 to-white px-4 py-16 overflow-hidden">
@@ -57,22 +58,22 @@ export default function HeroSection() {
                     {/* Card 1: AI */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <div className="text-4xl mb-3">🤖</div>
-                        <h3 className="font-bold text-gray-900 mb-1">ذكاء اصطناعي</h3>
-                        <p className="text-sm text-gray-600">تحليل متقدم ودقيق</p>
+                        <h3 className="font-bold text-gray-900 mb-1">{tTrust('ai.title')}</h3>
+                        <p className="text-sm text-gray-600">{tTrust('ai.subtitle')}</p>
                     </div>
 
                     {/* Card 2: Countries */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <div className="text-4xl mb-3">🌍</div>
-                        <h3 className="font-bold text-gray-900 mb-1">9 دول مدعومة</h3>
-                        <p className="text-sm text-gray-600">عربية وأوروبية</p>
+                        <h3 className="font-bold text-gray-900 mb-1">{tTrust('countries.title')}</h3>
+                        <p className="text-sm text-gray-600">{tTrust('countries.subtitle')}</p>
                     </div>
 
                     {/* Card 3: Free */}
                     <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                         <div className="text-4xl mb-3">✓</div>
-                        <h3 className="font-bold text-gray-900 mb-1">مجاني 100%</h3>
-                        <p className="text-sm text-gray-600">آمن ومُشفّر</p>
+                        <h3 className="font-bold text-gray-900 mb-1">{tTrust('free.title')}</h3>
+                        <p className="text-sm text-gray-600">{tTrust('free.subtitle')}</p>
                     </div>
                 </div>
             </div>

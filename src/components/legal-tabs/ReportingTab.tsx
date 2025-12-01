@@ -1,36 +1,39 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function ReportingTab() {
+    const t = useTranslations('legal.reportingContent');
+
     return (
         <div className="space-y-12">
             {/* Inside Syria Section */}
             <section>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 border-r-4 border-green-600 pr-4">
-                    🇸🇾 التبليغ داخل سوريا
+                    🇸🇾 {t('insideSyriaTitle')}
                 </h2>
                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
                     <div className="mb-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">الجهة المختصة</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">{t('authorityTitle')}</h3>
                         <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
                             <div className="flex items-center gap-4 mb-3">
                                 <span className="text-4xl">⚖️</span>
                                 <div>
-                                    <h4 className="text-lg font-bold text-gray-900">النيابة العامة السورية</h4>
-                                    <p className="text-gray-600">الجهة الرسمية لاستقبال البلاغات</p>
+                                    <h4 className="text-lg font-bold text-gray-900">{t('publicProsecution')}</h4>
+                                    <p className="text-gray-600">{t('officialBody')}</p>
                                 </div>
                             </div>
                             <div className="mt-4 space-y-2">
-                                <p className="text-gray-700"><strong>الموقع:</strong> <a href="https://www.moj.gov.sy" target="_blank" className="text-green-600 hover:underline">www.moj.gov.sy</a></p>
-                                <p className="text-gray-700"><strong>الطريقة:</strong> تقديم إخبار رسمي شخصياً أو عبر محامٍ</p>
+                                <p className="text-gray-700"><strong>{t('websiteLabel')}</strong> <a href="https://www.moj.gov.sy" target="_blank" className="text-green-600 hover:underline">www.moj.gov.sy</a></p>
+                                <p className="text-gray-700"><strong>{t('methodLabel')}</strong> {t('methodText')}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="bg-yellow-50 border-r-4 border-yellow-500 p-4 rounded-lg">
                         <p className="text-yellow-900 font-medium">
-                            💡 <strong>نصيحة:</strong> احتفظ بنسخة من الإخبار ورقم القيد للمتابعة.
+                            💡 <strong>{t('tipLabel')}</strong> {t('tipText')}
                         </p>
                     </div>
                 </div>
@@ -39,20 +42,18 @@ export default function ReportingTab() {
             {/* Outside Syria Section */}
             <section>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 border-r-4 border-green-600 pr-4">
-                    🌍 التبليغ خارج سوريا (دول اللجوء)
+                    🌍 {t('outsideSyriaTitle')}
                 </h2>
                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                    <p className="text-lg text-gray-700 mb-6">
-                        يمكنك التبليغ عن جرائم خطاب الكراهية في دولة إقامتك. راجع <strong className="text-green-600">تبويب &quot;القوانين المعمول بها&quot;</strong> للاطلاع على القوانين والجهات المختصة في كل دولة.
-                    </p>
+                    <p className="text-lg text-gray-700 mb-6" dangerouslySetInnerHTML={{ __html: t.raw('outsideSyriaText') }} />
                     <div className="grid md:grid-cols-3 gap-4">
                         {[
-                            { country: 'ألمانيا', flag: '🇩🇪', agency: 'Online-Wache' },
-                            { country: 'فرنسا', flag: '🇫🇷', agency: 'PHAROS' },
-                            { country: 'السويد', flag: '🇸🇪', agency: 'Polisen' },
-                            { country: 'بلجيكا', flag: '🇧🇪', agency: 'UNIA' },
-                            { country: 'هولندا', flag: '🇳🇱', agency: 'Politie' },
-                            { country: 'تركيا', flag: '🇹🇷', agency: 'CİMER' }
+                            { country: t('countries.germany'), flag: '🇩🇪', agency: 'Online-Wache' },
+                            { country: t('countries.france'), flag: '🇫🇷', agency: 'PHAROS' },
+                            { country: t('countries.sweden'), flag: '🇸🇪', agency: 'Polisen' },
+                            { country: t('countries.belgium'), flag: '🇧🇪', agency: 'UNIA' },
+                            { country: t('countries.netherlands'), flag: '🇳🇱', agency: 'Politie' },
+                            { country: t('countries.turkey'), flag: '🇹🇷', agency: 'CİMER' }
                         ].map((item, i) => (
                             <div key={i} className="bg-gray-50 p-4 rounded-lg border border-gray-200 text-center">
                                 <div className="text-3xl mb-2">{item.flag}</div>
@@ -67,7 +68,7 @@ export default function ReportingTab() {
             {/* Digital Platforms Section */}
             <section>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 border-r-4 border-green-600 pr-4">
-                    📱 التبليغ عبر المنصات الرقمية
+                    📱 {t('digitalPlatformsTitle')}
                 </h2>
                 <div className="grid md:grid-cols-4 gap-6">
                     {[
@@ -84,9 +85,10 @@ export default function ReportingTab() {
                             <a
                                 href={platform.link}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-sm text-green-600 font-bold hover:underline"
                             >
-                                مركز البلاغات ↗
+                                {t('reportCenter')} ↗
                             </a>
                         </div>
                     ))}
@@ -96,18 +98,18 @@ export default function ReportingTab() {
             {/* Workflow Section */}
             <section>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 border-r-4 border-green-600 pr-4">
-                    🔄 كيف نتعامل مع البلاغات الخطرة؟
+                    🔄 {t('workflowTitle')}
                 </h2>
                 <div className="grid md:grid-cols-4 gap-4">
                     {[
-                        { step: '1', title: 'استلام البلاغ', icon: '📥' },
-                        { step: '2', title: 'التحليل الآلي', icon: '🤖' },
-                        { step: '3', title: 'المراجعة القانونية', icon: '⚖️' },
-                        { step: '4', title: 'الإحالة للجهات المختصة', icon: '📤' }
+                        { step: '1', title: t('workflowSteps.step1'), icon: '📥' },
+                        { step: '2', title: t('workflowSteps.step2'), icon: '🤖' },
+                        { step: '3', title: t('workflowSteps.step3'), icon: '⚖️' },
+                        { step: '4', title: t('workflowSteps.step4'), icon: '📤' }
                     ].map((item, i) => (
                         <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 text-center relative">
                             <div className="text-4xl mb-4">{item.icon}</div>
-                            <div className="text-sm text-green-600 font-bold mb-1">خطوة {item.step}</div>
+                            <div className="text-sm text-green-600 font-bold mb-1">{t('workflowSteps.stepLabel')} {item.step}</div>
                             <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
                             {i < 3 && (
                                 <div className="hidden md:block absolute top-1/2 -left-4 transform -translate-y-1/2 z-10">
@@ -125,9 +127,9 @@ export default function ReportingTab() {
             <section className="bg-gray-100 p-8 rounded-2xl border border-gray-200 flex items-start gap-4">
                 <span className="text-4xl">⚠️</span>
                 <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">حدود عمل مبادرة بَلِّغ</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('limitationsTitle')}</h3>
                     <p className="text-gray-700 leading-relaxed">
-                        لا تقدم مبادرة بَلِّغ تمثيلًا قانونيًا مباشرًا. يقتصر دورنا على تحليل البلاغات، تقديم المشورة الأولية، وتوجيه الضحايا نحو الجهات المختصة والمحامين المعتمدين.
+                        {t('limitationsText')}
                     </p>
                 </div>
             </section>

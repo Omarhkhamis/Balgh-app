@@ -30,8 +30,9 @@ export async function POST(req: NextRequest) {
                         reasoning_ar: { type: SchemaType.STRING },
                         violation_type: { type: SchemaType.STRING },
                         target_group: { type: SchemaType.STRING },
+                        intent_signal: { type: SchemaType.STRING, enum: ["Explicit violence", "Dehumanization", "Stereotyping", "Insult", "None"] },
                     },
-                    required: ["classification", "severity_score", "risk_level", "reasoning_ar"],
+                    required: ["classification", "severity_score", "risk_level", "reasoning_ar", "intent_signal"],
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 } as any,
             },

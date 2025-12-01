@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import HateSpeechTab from './legal-tabs/HateSpeechTab';
 import DocumentationTab from './legal-tabs/DocumentationTab';
 import LawsTab from './legal-tabs/LawsTab';
@@ -14,16 +15,17 @@ interface Tab {
     component: React.ComponentType;
 }
 
-const tabs: Tab[] = [
-    { id: 'hate-speech', label: 'خطاب الكراهية قانونياً', icon: '⚖️', component: HateSpeechTab },
-    { id: 'documentation', label: 'كيف توثّق الجريمة؟', icon: '📸', component: DocumentationTab },
-    { id: 'laws', label: 'القوانين المعمول بها', icon: '📜', component: LawsTab },
-    { id: 'reporting', label: 'آلية التبليغ', icon: '📤', component: ReportingTab },
-    { id: 'faq', label: 'أسئلة شائعة', icon: '❓', component: FAQTab }
-];
-
 export default function LegalTabs() {
     const [activeTab, setActiveTab] = useState<string>('hate-speech');
+    const t = useTranslations('legal.tabs');
+
+    const tabs: Tab[] = useMemo(() => [
+        { id: 'hate-speech', label: t('hateSpeech'), icon: '⚖️', component: HateSpeechTab },
+        { id: 'documentation', label: t('documentation'), icon: '📸', component: DocumentationTab },
+        { id: 'laws', label: t('laws'), icon: '📜', component: LawsTab },
+        { id: 'reporting', label: t('reporting'), icon: '📤', component: ReportingTab },
+        { id: 'faq', label: t('faq'), icon: '❓', component: FAQTab }
+    ], [t]);
 
     const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || HateSpeechTab;
 
@@ -38,8 +40,8 @@ export default function LegalTabs() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex-1 px-6 py-4 text-center font-bold text-base transition-all duration-300 relative ${activeTab === tab.id
-                                    ? 'bg-green-600 text-white'
-                                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                                ? 'bg-green-600 text-white'
+                                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                                 }`}
                         >
                             <div className="flex items-center justify-center gap-2">

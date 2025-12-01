@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function AppHeader() {
@@ -11,6 +11,7 @@ export default function AppHeader() {
     const [isScrolled, setIsScrolled] = useState(false);
     const locale = useLocale();
     const pathname = usePathname();
+    const router = useRouter();
     const t = useTranslations('header');
 
     useEffect(() => {
@@ -51,7 +52,7 @@ export default function AppHeader() {
             <div className="container mx-auto px-6">
                 <div className={`flex items-center justify-between ${locale === 'en' ? 'flex-row-reverse' : 'flex-row'}`} style={{ height: '60px' }}>
                     {/* Brand Text Only - Enhanced */}
-                    <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all px-2 ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
+                    <Link href={`/${locale}/`} className={`flex items-center gap-4 hover:opacity-80 transition-all px-2 mt-1 ${locale === 'en' ? 'flex-row-reverse' : ''}`}>
                         <span className="text-2xl md:text-5xl font-bold" style={{ color: '#1E8C4E' }}>
                             بَلِّغ
                         </span>
@@ -62,22 +63,31 @@ export default function AppHeader() {
 
                     {/* Desktop: Language Switcher - Enhanced */}
                     <div className="hidden xl:flex items-center gap-8">
-                        <button
-                            onClick={() => {
-                                const newLocale = locale === 'ar' ? 'en' : 'ar';
-                                window.location.href = `/${newLocale}`;
-                            }}
+                        <Link
+                            href={`/${locale === 'ar' ? 'en' : 'ar'}${pathname.replace(/^\/(ar|en)/, '') || '/'}`}
                             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all font-semibold border border-gray-200 hover:border-gray-300"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                             </svg>
                             <span className="text-sm">{locale === 'ar' ? 'EN' : 'AR'}</span>
-                        </button>
+                        </Link>
                     </div>
 
-                    {/* Mobile/Tablet: Menu Button only on mobile, CTA on tablet+ */}
+                    {/* Mobile/Tablet: Language Switcher + CTA + Menu Button */}
                     <div className="flex xl:hidden items-center gap-3">
+                        {/* Language Switcher - Mobile/Tablet */}
+                        <Link
+                            href={`/${locale === 'ar' ? 'en' : 'ar'}${pathname.replace(/^\/(ar|en)/, '') || '/'}`}
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all font-semibold border border-gray-200 hover:border-gray-300 text-sm"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                            </svg>
+                            <span className="text-xs">{locale === 'ar' ? 'EN' : 'AR'}</span>
+                        </Link>
+
+                        {/* CTA Button - Tablet+ */}
                         <Link
                             href={`/${locale}/analyze`}
                             className="hidden md:block px-4 py-2 md:px-6 md:py-3 rounded-lg font-bold text-white text-sm md:text-base transition-all hover:shadow-xl shadow-md"
