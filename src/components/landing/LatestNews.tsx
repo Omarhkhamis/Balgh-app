@@ -37,6 +37,9 @@ export default function LatestNews() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
                     {latestNews.map((item) => {
                         const category = NEWS_CATEGORIES[item.category];
+                        const title = item.title[locale as 'ar' | 'en'] || item.title.ar;
+                        const description = item.description[locale as 'ar' | 'en'] || item.description.ar;
+
                         return (
                             <Link
                                 key={item.id}
@@ -48,7 +51,7 @@ export default function LatestNews() {
                                     <div className="relative h-48 bg-gray-200 overflow-hidden">
                                         <img
                                             src={item.image}
-                                            alt={item.title}
+                                            alt={title}
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                         />
                                         {/* Video Badge */}
@@ -76,12 +79,12 @@ export default function LatestNews() {
 
                                     {/* Title */}
                                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
-                                        {item.title}
+                                        {title}
                                     </h3>
 
                                     {/* Description */}
                                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                                        {item.description}
+                                        {description}
                                     </p>
 
                                     {/* Read More */}

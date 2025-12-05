@@ -2,20 +2,21 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import AnalysisForm from '../../../components/AnalysisForm';
 
 export default function AnalyzePage() {
+    const t = useTranslations();
     const locale = useLocale();
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-    const handleAnalyze = async (text: string) => {
+    const handleAnalyze = async (inputData: { text: string; image: string | null }) => {
         setIsAnalyzing(true);
         try {
             const response = await fetch('/api/classify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text })
+                body: JSON.stringify({ ...inputData, locale })
             });
 
             const data = await response.json();
@@ -50,7 +51,7 @@ export default function AnalyzePage() {
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
-                            <span>العودة للرئيسية</span>
+                            <span>{t('header.backToHome')}</span>
                         </Link>
                     </div>
                 </div>

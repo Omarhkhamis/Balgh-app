@@ -3,14 +3,21 @@
 import React, { useState } from 'react';
 import { COUNTRY_LEGAL_DATA } from '../lib/countryReportingData';
 import CountryLegalModal from './CountryLegalModal';
+import { useTranslations } from 'next-intl';
 
-export default function InteractiveLegalMap() {
-    const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+interface InteractiveLegalMapProps {
+    selectedCountry: string | null;
+    onSelectCountry: (country: string | null) => void;
+}
+
+export default function InteractiveLegalMap({ selectedCountry, onSelectCountry }: InteractiveLegalMapProps) {
+    const t = useTranslations('legal.map');
+    const tCountries = useTranslations('legal.countries');
     const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
     const [viewMode, setViewMode] = useState<'map' | 'list'>('map');
 
     const handleCountryClick = (countryName: string) => {
-        setSelectedCountry(countryName);
+        onSelectCountry(countryName);
     };
 
     // Circular Flag Badge Component
@@ -29,11 +36,12 @@ export default function InteractiveLegalMap() {
                 className={`absolute transition-all duration-300 ${hoveredCountry === country ? 'scale-125 z-50' : 'hover:scale-110 z-10'
                     }`}
                 style={{ top, left, transform: 'translate(-50%, -50%)' }}
-                aria-label={COUNTRY_LEGAL_DATA[country]?.countryNameAr}
+                style={{ top, left, transform: 'translate(-50%, -50%)' }}
+                aria-label={tCountries(country)}
             >
                 <div className={`${sizeClasses[size]} rounded-full bg-white border-3 ${hoveredCountry === country
-                        ? 'border-green-500 shadow-2xl ring-4 ring-green-200'
-                        : 'border-gray-300 shadow-lg'
+                    ? 'border-green-500 shadow-2xl ring-4 ring-green-200'
+                    : 'border-gray-300 shadow-lg'
                     } flex items-center justify-center transition-all duration-300 relative`}>
                     {/* Pulse effect on hover */}
                     {hoveredCountry === country && (
@@ -52,7 +60,7 @@ export default function InteractiveLegalMap() {
             {/* Header with View Toggle */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                 <h2 className="text-3xl font-bold text-gray-900 border-r-4 border-green-600 pr-4">
-                    🗺️ الإطار القانوني الدولي
+                    🗺️ {t('title')}
                 </h2>
 
                 {/* View Mode Toggle */}
@@ -60,20 +68,20 @@ export default function InteractiveLegalMap() {
                     <button
                         onClick={() => setViewMode('map')}
                         className={`px-4 py-2 rounded-lg font-bold transition-all ${viewMode === 'map'
-                                ? 'bg-green-600 text-white shadow-md'
-                                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                            ? 'bg-green-600 text-white shadow-md'
+                            : 'bg-transparent text-gray-600 hover:bg-gray-200'
                             }`}
                     >
-                        🗺️ خريطة
+                        🗺️ {t('mapView')}
                     </button>
                     <button
                         onClick={() => setViewMode('list')}
                         className={`px-4 py-2 rounded-lg font-bold transition-all ${viewMode === 'list'
-                                ? 'bg-green-600 text-white shadow-md'
-                                : 'bg-transparent text-gray-600 hover:bg-gray-200'
+                            ? 'bg-green-600 text-white shadow-md'
+                            : 'bg-transparent text-gray-600 hover:bg-gray-200'
                             }`}
                     >
-                        📋 قائمة
+                        📋 {t('listView')}
                     </button>
                 </div>
             </div>
@@ -125,9 +133,9 @@ export default function InteractiveLegalMap() {
                                         <span className="text-3xl">{COUNTRY_LEGAL_DATA[hoveredCountry]?.flag}</span>
                                         <div>
                                             <div className="text-xl font-bold">
-                                                {COUNTRY_LEGAL_DATA[hoveredCountry]?.countryNameAr}
+                                                {tCountries(hoveredCountry)}
                                             </div>
-                                            <div className="text-xs opacity-90">انقر للمزيد ←</div>
+                                            <div className="text-xs opacity-90">{t('clickMore')} ←</div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +146,7 @@ export default function InteractiveLegalMap() {
                     {/* Mobile Hint */}
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 md:hidden">
                         <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-700 shadow-md">
-                            💡 صعب النقر؟ جرّب عرض القائمة ↑
+                            💡 {t('mobileHint')} ↑
                         </div>
                     </div>
                 </div>
@@ -157,10 +165,10 @@ export default function InteractiveLegalMap() {
                                 </span>
                                 <div className="flex-grow">
                                     <h3 className="text-xl font-bold text-gray-900 mb-1">
-                                        {COUNTRY_LEGAL_DATA[country]?.countryNameAr}
+                                        {tCountries(country)}
                                     </h3>
                                     <p className="text-sm text-gray-600">
-                                        {COUNTRY_LEGAL_DATA[country]?.countryNameEn}
+                                        {COUNTRY_LEGAL_DATA[country]?.countryName}
                                     </p>
                                 </div>
                                 <span className="text-green-600 text-2xl group-hover:translate-x-1 transition-transform">
@@ -173,10 +181,10 @@ export default function InteractiveLegalMap() {
             )}
 
             {/* Country Modal */}
-            {selectedCountry && (
+            {selectedCountry && COUNTRY_LEGAL_DATA[selectedCountry] && (
                 <CountryLegalModal
-                    country={selectedCountry}
-                    onClose={() => setSelectedCountry(null)}
+                    country={COUNTRY_LEGAL_DATA[selectedCountry]}
+                    onClose={() => onSelectCountry(null)}
                 />
             )}
         </div>

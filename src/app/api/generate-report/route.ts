@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getGeminiClient } from '@/lib/gemini';
 import { getLegalInfo } from '@/lib/report-generator';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = getGeminiClient();
 
 export async function POST(req: Request) {
     try {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
 **البيانات المتوفرة:**
 - النص المخالف: "${text}"
-- التحليل: ${reasoning_ar}
+- التحليل: ${reasoning_ar || "يتضمن خطاب كراهية وتحريض"}
 - درجة الخطورة: ${severity_score}/10
 - التاريخ: ${currentDate}
 
@@ -64,7 +64,7 @@ ${currentDate}
 
 ${text ? `النص المخالف: "${text}"` : 'المحتوى المخالف: محتوى مرئي (صورة أو فيديو)'}
 
-وبعد التحليل القانوني تبيّن أن هذا المحتوى ${reasoning_ar}، ويشكل مخالفة صريحة للمادة /287/ من قانون العقوبات السوري (التحريض على النعرات الطائفية أو العنصرية)، وللمادة /31/ من القانون رقم 20 لعام 2023 الخاص بالجرائم الإلكترونية.
+وبعد التحليل القانوني تبيّن أن هذا المحتوى ${reasoning_ar || "يتضمن خطاب كراهية ويحرض على العنف"}، ويشكل مخالفة صريحة للمادة /287/ من قانون العقوبات السوري (التحريض على النعرات الطائفية أو العنصرية)، وللمادة /31/ من القانون رقم 20 لعام 2023 الخاص بالجرائم الإلكترونية.
 
 معلومات المنشور:
 - اسم الحساب: [يُرجى إضافة اسم الحساب]
@@ -91,15 +91,12 @@ ${text ? `النص المخالف: "${text}"` : 'المحتوى المخالف: 
 - لا تتجاوز صفحة واحدة
 - نص عادي بدون تنسيق`;
 
-            const model = genAI.getGenerativeModel({
-                model: 'gemini-2.0-flash',
+            const result = await genAI.generateContent('gemini-2.0-flash', [syrianPrompt], {
                 generationConfig: {
                     temperature: 0.2,
                     maxOutputTokens: 2000,
                 }
             });
-
-            const result = await model.generateContent(syrianPrompt);
             const report = result.response.text();
 
             return NextResponse.json({
@@ -241,15 +238,12 @@ Examples for reference:
 
 Write the complete report now:`;
 
-        const model = genAI.getGenerativeModel({
-            model: 'gemini-2.0-flash',
+        const result = await genAI.generateContent('gemini-2.0-flash', [internationalPrompt], {
             generationConfig: {
                 temperature: 0.3, // Lower temperature for more consistent, formal output
                 maxOutputTokens: 2048,
             }
         });
-
-        const result = await model.generateContent(internationalPrompt);
         const report = result.response.text();
 
         return NextResponse.json({
@@ -260,8 +254,11 @@ Write the complete report now:`;
                 report_link: legalInfo.report_link
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Report generation error:', error);
-        return NextResponse.json({ error: 'Failed to generate report' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Failed to generate report',
+            details: error.message || String(error)
+        }, { status: 500 });
     }
 }

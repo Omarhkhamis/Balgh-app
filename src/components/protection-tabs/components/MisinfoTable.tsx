@@ -1,31 +1,34 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function MisinfoTable() {
+    const t = useTranslations('protection.content.awareness.misinfo');
+
     const mechanisms = [
         {
-            name: 'التأطير',
-            definition: 'حين تُعرض القصة من زاوية واحدة فقط كي تصل لاستنتاج محدد مسبقاً.',
-            example: 'عرض حادثة واحدة لتمثيل "طبيعة" جماعة كاملة',
+            name: t('mechanisms.framing.name'),
+            definition: t('mechanisms.framing.def'),
+            example: t('mechanisms.framing.ex'),
             icon: '🎯'
         },
         {
-            name: 'التعميم',
-            definition: 'حين يتحول تصرف فرد (حادثة واحدة) إلى "طباع جماعة" أو سمة لمنطقة كاملة.',
-            example: '"كل أهل المنطقة X هم..." بناءً على فعل شخص واحد',
+            name: t('mechanisms.generalization.name'),
+            definition: t('mechanisms.generalization.def'),
+            example: t('mechanisms.generalization.ex'),
             icon: '🔄'
         },
         {
-            name: 'نصف الحقيقة',
-            definition: 'حين يقدّم المحتوى معلومة صحيحة ويخفي بقية السياق بهدف خلق رواية مضلّلة ومُحرّضة.',
-            example: 'ذكر جزء من الحدث وإخفاء السياق الكامل',
+            name: t('mechanisms.halfTruth.name'),
+            definition: t('mechanisms.halfTruth.def'),
+            example: t('mechanisms.halfTruth.ex'),
             icon: '⚖️'
         },
         {
-            name: 'غرف الصدى',
-            definition: 'حين تعرض عليك المنصة محتوى يشبه قناعاتك فقط، فتشعر أن "الجميع" يفكر مثلك.',
-            example: 'في سوريا، غرف الصدى مسؤولة عن خلق موجات غضب جماعية تضخم الشائعات',
+            name: t('mechanisms.echoChambers.name'),
+            definition: t('mechanisms.echoChambers.def'),
+            example: t('mechanisms.echoChambers.ex'),
             icon: '🔊'
         }
     ];
@@ -37,9 +40,9 @@ export default function MisinfoTable() {
                 <table className="w-full bg-white rounded-xl overflow-hidden shadow-md">
                     <thead className="bg-purple-600 text-white">
                         <tr>
-                            <th className="px-6 py-4 text-right font-bold w-1/4">آلية التضليل</th>
-                            <th className="px-6 py-4 text-right font-bold w-2/4">التعريف والتطبيق</th>
-                            <th className="px-6 py-4 text-right font-bold w-1/4">مثال</th>
+                            <th className="px-6 py-4 text-right font-bold w-1/4">{t('headers.mechanism')}</th>
+                            <th className="px-6 py-4 text-right font-bold w-2/4">{t('headers.definition')}</th>
+                            <th className="px-6 py-4 text-right font-bold w-1/4">{t('headers.example')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +73,7 @@ export default function MisinfoTable() {
                         <p className="text-gray-700 mb-3 leading-relaxed">{mech.definition}</p>
                         <div className="bg-purple-50 p-3 rounded-lg border-r-4 border-purple-400">
                             <p className="text-sm text-gray-600 italic">
-                                <strong>مثال:</strong> {mech.example}
+                                <strong>{t('headers.example')}:</strong> {mech.example}
                             </p>
                         </div>
                     </div>

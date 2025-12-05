@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CountryLegalData } from '@/lib/countryReportingData';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface CountryLegalModalProps {
     country: CountryLegalData;
@@ -9,6 +10,14 @@ interface CountryLegalModalProps {
 }
 
 export default function CountryLegalModal({ country, onClose }: CountryLegalModalProps) {
+    const t = useTranslations('legal.modal');
+    const tCountries = useTranslations('legal.countries');
+    const locale = useLocale();
+    const isArabic = locale === 'ar';
+
+    const laws = isArabic ? country.lawsAr : country.laws;
+    const definition = isArabic ? country.definitionAr : country.definition;
+    const agencies = country.agencies;
     return (
         <>
             {/* Backdrop */}
@@ -29,14 +38,14 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                             <div className="flex items-center gap-4">
                                 <span className="text-5xl">{country.flag}</span>
                                 <div>
-                                    <h2 className="text-2xl font-bold">{country.countryNameAr}</h2>
+                                    <h2 className="text-2xl font-bold">{tCountries(country.countryName)}</h2>
                                     <p className="text-green-100 text-sm">{country.countryName}</p>
                                 </div>
                             </div>
                             <button
                                 onClick={onClose}
                                 className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-all"
-                                aria-label="إغلاق"
+                                aria-label={t('close')}
                             >
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -55,11 +64,11 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900">القوانين المعنية</h3>
+                                <h3 className="text-xl font-bold text-gray-900">{t('relevantLaws')}</h3>
                             </div>
 
                             <div className="bg-blue-50 rounded-xl p-5 space-y-3">
-                                {country.lawsAr.map((law, index) => (
+                                {laws.map((law, index) => (
                                     <div key={index} className="flex items-start gap-3">
                                         <span className="text-blue-600 font-bold mt-1">•</span>
                                         <p className="text-gray-800 font-medium">{law}</p>
@@ -68,7 +77,7 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                             </div>
 
                             <div className="mt-4 p-4 bg-gray-50 rounded-xl border-r-4 border-green-500">
-                                <p className="text-gray-700 leading-relaxed">{country.definitionAr}</p>
+                                <p className="text-gray-700 leading-relaxed">{definition}</p>
                             </div>
                         </div>
 
@@ -80,7 +89,7 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900">جهات التبليغ</h3>
+                                <h3 className="text-xl font-bold text-gray-900">{t('reportingAgencies')}</h3>
                             </div>
 
                             <div className="space-y-3">
@@ -91,7 +100,7 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                                     >
                                         <div className="flex items-start justify-between gap-4">
                                             <div className="flex-1">
-                                                <h4 className="font-bold text-gray-900 mb-1">{agency.nameAr}</h4>
+                                                <h4 className="font-bold text-gray-900 mb-1">{isArabic ? agency.nameAr : agency.name}</h4>
                                                 <p className="text-sm text-gray-600 mb-3">{agency.name}</p>
                                                 {agency.email && (
                                                     <p className="text-sm text-gray-500 mb-2">
@@ -105,7 +114,7 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                                                 rel="noopener noreferrer"
                                                 className="px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition-colors whitespace-nowrap"
                                             >
-                                                زيارة الموقع →
+                                                {t('visitWebsite')} →
                                             </a>
                                         </div>
                                     </div>
@@ -120,9 +129,9 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                 </svg>
                                 <div>
-                                    <p className="font-semibold text-yellow-900 mb-1">ملاحظة هامة</p>
+                                    <p className="font-semibold text-yellow-900 mb-1">{t('importantNote')}</p>
                                     <p className="text-sm text-yellow-800">
-                                        تأكد من الاحتفاظ بأدلة (لقطات شاشة، روابط) قبل التبليغ. بعض المنصات قد تطلب معلومات إضافية.
+                                        {t('evidenceNote')}
                                     </p>
                                 </div>
                             </div>
@@ -135,7 +144,7 @@ export default function CountryLegalModal({ country, onClose }: CountryLegalModa
                             onClick={onClose}
                             className="w-full py-3 bg-gray-800 text-white font-semibold rounded-xl hover:bg-gray-900 transition-colors"
                         >
-                            إغلاق
+                            {t('close')}
                         </button>
                     </div>
                 </div>

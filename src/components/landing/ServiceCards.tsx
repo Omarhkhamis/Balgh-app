@@ -60,7 +60,7 @@ export default function ServiceCards() {
                         <Link
                             key={service.id}
                             href={`/${locale}${service.href}`}
-                            className={`group p-8 rounded-2xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${colorClasses[service.color as keyof typeof colorClasses]}`}
+                            className={`group p-8 rounded-2xl border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col items-center text-center h-full ${colorClasses[service.color as keyof typeof colorClasses]}`}
                         >
                             {/* Icon */}
                             <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
@@ -73,15 +73,19 @@ export default function ServiceCards() {
                             </h3>
 
                             {/* Description */}
-                            <p className="text-base opacity-90 mb-6 leading-relaxed min-h-[60px]">
+                            <p className="text-base opacity-90 mb-8 leading-relaxed flex-grow">
                                 {t(`${service.id}.description`)}
                             </p>
 
                             {/* CTA */}
-                            <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all">
+                            <div className="flex items-center justify-center gap-2 font-semibold group-hover:gap-3 transition-all mt-auto">
                                 <span>{t(`${service.id}.cta`)}</span>
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    {locale === 'ar' ? (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    ) : (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    )}
                                 </svg>
                             </div>
                         </Link>

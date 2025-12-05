@@ -1,16 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function AnalysisChecklist() {
+    const t = useTranslations('protection.content.awareness.checklist');
     const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
 
     const questions = [
-        'هل يستهدف الهوية؟ (بدلاً من الفعل الفردي)',
-        'هل يتضمن تحقيراً أو تشبيهاً غير إنساني؟',
-        'هل يدفعك للخوف أو الغضب بدل الفهم؟',
-        'هل يعمم على جماعة كاملة بناءً على فعل فرد؟',
-        'هل يستخدم لغة تحريضية أو عنيفة؟'
+        t('questions.0'),
+        t('questions.1'),
+        t('questions.2'),
+        t('questions.3'),
+        t('questions.4')
     ];
 
     const toggleCheck = (index: number) => {
@@ -25,16 +27,16 @@ export default function AnalysisChecklist() {
 
     const checkedCount = checkedItems.size;
     const getResultMessage = () => {
-        if (checkedCount === 0) return { text: 'ابدأ بتحليل المحتوى...', color: 'gray' };
-        if (checkedCount <= 2) return { text: '⚠️ احتمال متوسط - راجع المحتوى بحذر', color: 'yellow' };
-        return { text: '🚨 احتمال عالٍ - هذا على الأرجح خطاب كراهية', color: 'red' };
+        if (checkedCount === 0) return { text: t('results.low'), color: 'gray' };
+        if (checkedCount <= 2) return { text: t('results.medium'), color: 'yellow' };
+        return { text: t('results.high'), color: 'red' };
     };
 
     const result = getResultMessage();
 
     return (
         <div className="bg-blue-50 p-8 rounded-xl border border-blue-200">
-            <h4 className="text-xl font-bold text-gray-900 mb-6">أسئلة تحليل الخطاب الكاره:</h4>
+            <h4 className="text-xl font-bold text-gray-900 mb-6">{t('title')}</h4>
 
             <div className="space-y-4 mb-6">
                 {questions.map((question, index) => (
@@ -65,7 +67,7 @@ export default function AnalysisChecklist() {
             {/* Syrian Context Alert */}
             <div className="mt-6 p-6 bg-white rounded-lg border-r-4 border-blue-600">
                 <p className="text-gray-700 leading-relaxed">
-                    <strong className="text-blue-800">⚠️ علامة تحذير واضحة في السياق السوري:</strong> كثير من المحتوى يبدأ بجملة عادية وينتهي بتعميم كامل: "الدروز كلهم..."، "السنة كلهم..."، "العلويون دائماً…". هذه القفزة من الفرد إلى الجماعة هي مؤشر قوي على خطاب الكراهية.
+                    <strong className="text-blue-800">{t('contextAlert')}</strong>
                 </p>
             </div>
         </div>

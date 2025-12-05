@@ -18,7 +18,8 @@ export async function POST(req: NextRequest) {
             violationType,
             riskLevel,
             targetCountry,
-            modelScore
+            modelScore,
+            image_description
         } = body;
 
         const credentials = JSON.parse(credentialsJson);
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
 
         await sheets.spreadsheets.values.append({
             spreadsheetId,
-            range: 'Sheet1!A:G',
+            range: 'Sheet1!A:H',
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [[
@@ -41,7 +42,8 @@ export async function POST(req: NextRequest) {
                     violationType,
                     riskLevel,
                     targetCountry,
-                    modelScore
+                    modelScore,
+                    image_description
                 ]],
             },
         });

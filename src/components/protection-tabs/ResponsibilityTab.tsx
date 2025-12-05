@@ -2,129 +2,168 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+
+// Icons
+const IconHeart = () => (
+    <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+);
+
+const IconStop = () => (
+    <svg className="w-8 h-8 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+    </svg>
+);
+
+const IconCommunity = () => (
+    <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+);
 
 export default function ResponsibilityTab() {
+    const t = useTranslations('protection.content.responsibility');
+
     return (
-        <div className="space-y-12">
+        <div className="space-y-16">
             {/* Introduction */}
-            <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                    🤝 تضامن وواجه - المسؤولية الاجتماعية
+            <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                    {t('title')}
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                    الحماية الرقمية ليست فقط عن حماية نفسك، بل عن حماية الآخرين وبناء فضاء رقمي آمن للجميع.
+                <p className="text-xl text-gray-700 leading-relaxed">
+                    {t('intro')}
                 </p>
             </div>
 
             {/* Section 1: Protect Others */}
-            <section>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 border-r-4 border-green-600 pr-4">
-                    🤝 ساهم في حماية الآخرين من الاستهداف
-                </h3>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                    حين ترى شخصاً مستهدفاً بخطاب طائفي، جندري أو مناطقي، لا تتركه وحيداً:
+            <section className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="bg-green-100 p-3 rounded-xl">
+                        <IconHeart />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                        {t('protectOthers.title')}
+                    </h3>
+                </div>
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                    {t('protectOthers.intro')}
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    <div className="bg-green-50 p-8 rounded-xl border-2 border-green-200 hover:shadow-lg transition-shadow">
-                        <div className="text-center mb-4">
-                            <span className="text-6xl">💚</span>
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                    <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-md transition-all text-center group">
+                        <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-100 transition-colors">
+                            <span className="text-4xl">💚</span>
                         </div>
-                        <h4 className="font-bold text-gray-900 mb-3 text-xl text-center">الدعم الفوري</h4>
-                        <p className="text-gray-700 leading-relaxed text-center">
-                            كلمة دعم واحدة تكسر تأثير الإساءة النفسي. تواصل مع الشخص المستهدف وأخبره أنك تقف معه.
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">{t('protectOthers.support.title')}</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                            {t('protectOthers.support.desc')}
                         </p>
                     </div>
-                    <div className="bg-green-50 p-8 rounded-xl border-2 border-green-200 hover:shadow-lg transition-shadow">
-                        <div className="text-center mb-4">
-                            <span className="text-6xl">📢</span>
+                    <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-md transition-all text-center group">
+                        <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-100 transition-colors">
+                            <span className="text-4xl">📢</span>
                         </div>
-                        <h4 className="font-bold text-gray-900 mb-3 text-xl text-center">الإبلاغ الجماعي</h4>
-                        <p className="text-gray-700 leading-relaxed text-center">
-                            الإبلاغ المتعدد على ذات المحتوى يقلل من انتشاره ويزيد سرعة حذفه من المنصة.
+                        <h4 className="text-xl font-bold text-gray-900 mb-3">{t('protectOthers.reporting.title')}</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                            {t('protectOthers.reporting.desc')}
                         </p>
                     </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl border-2 border-green-200">
-                    <p className="text-gray-700 leading-relaxed">
-                        <strong className="text-green-800">💡 تذكر:</strong> خطاب الكراهية غالباً ما يستهدف الفئات الأكثر ضعفاً في المجتمع. التضامن ليس فعلاً رمزياً، بل حماية مباشرة تمنع تحوّل اللغة إلى فعل، وتساهم في بناء فضاء رقمي آمن للجميع.
+                <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl border-r-4 border-green-500">
+                    <p className="text-green-900 text-lg font-medium leading-relaxed">
+                        {t('protectOthers.note')}
                     </p>
                 </div>
             </section>
 
             {/* Section 2: Don't Be a Bystander */}
-            <section>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 border-r-4 border-orange-600 pr-4">
-                    🗣️ لا تكن مجرد "متفرّج": أنت جزء من السردية
-                </h3>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                    الصمت أمام خطاب الكراهية يعني السماح له بالاستمرار. اختر دائمًا فعلاً صغيراً:
-                </p>
-
-                <div className="grid md:grid-cols-3 gap-6 mb-6">
-                    <div className="bg-orange-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow border-2 border-orange-200">
-                        <span className="text-5xl mb-3 block">🛑</span>
-                        <h4 className="font-bold text-gray-900 mb-2">أوقف المشاركة</h4>
-                        <p className="text-gray-700 text-sm">لا تشارك المحتوى الضار حتى لو كان هدفك التنديد</p>
+            <section className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="bg-orange-100 p-3 rounded-xl">
+                        <IconStop />
                     </div>
-                    <div className="bg-orange-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow border-2 border-orange-200">
-                        <span className="text-5xl mb-3 block">⚠️</span>
-                        <h4 className="font-bold text-gray-900 mb-2">حذّر الأصدقاء</h4>
-                        <p className="text-gray-700 text-sm">انبه محيطك من التضليل والشائعات</p>
-                    </div>
-                    <div className="bg-orange-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow border-2 border-orange-200">
-                        <span className="text-5xl mb-3 block">✨</span>
-                        <h4 className="font-bold text-gray-900 mb-2">انشر الإيجابية</h4>
-                        <p className="text-gray-700 text-sm">شارك قصص التعاون بين السوريين</p>
-                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                        {t('bystander.title')}
+                    </h3>
                 </div>
-
-                <p className="text-gray-700 leading-relaxed italic bg-orange-50 p-4 rounded-xl border-r-4 border-orange-500">
-                    💡 ذكّر الآخرين بأن الكلمات تُصنع منها المخاوف، وتُصنع منها الثقة أيضاً. في سياق هش مثل سوريا، كل اختيار لغوي يؤثر على السلم الأهلي أكثر مما نتخيل.
-                </p>
-            </section>
-
-            {/* Section 3: Make Space Safe */}
-            <section>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 border-r-4 border-purple-600 pr-4">
-                    ✨ اجعل الفضاء الرقمي مساحة آمنة
-                </h3>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                    الحماية الرقمية لا تتعلق فقط بما لا تفعله، بل بما تختار أن تفعله:
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                    {t('bystander.intro')}
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-xl border-2 border-purple-200 text-center hover:shadow-lg transition-shadow">
-                        <span className="text-6xl mb-4 block">🛑</span>
-                        <p className="text-gray-800 font-medium text-lg">قلّل انتشار الخطاب المؤذي</p>
+                    <div className="bg-orange-50 p-8 rounded-2xl border border-orange-100 hover:shadow-md transition-all text-center">
+                        <span className="text-5xl mb-4 block">🛑</span>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">{t('bystander.stop.title')}</h4>
+                        <p className="text-gray-600 text-sm">{t('bystander.stop.desc')}</p>
                     </div>
-                    <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-xl border-2 border-purple-200 text-center hover:shadow-lg transition-shadow">
-                        <span className="text-6xl mb-4 block">📚</span>
-                        <p className="text-gray-800 font-medium text-lg">شارك المعرفة الصحيحة</p>
+                    <div className="bg-orange-50 p-8 rounded-2xl border border-orange-100 hover:shadow-md transition-all text-center">
+                        <span className="text-5xl mb-4 block">⚠️</span>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">{t('bystander.warn.title')}</h4>
+                        <p className="text-gray-600 text-sm">{t('bystander.warn.desc')}</p>
                     </div>
-                    <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-xl border-2 border-purple-200 text-center hover:shadow-lg transition-shadow">
-                        <span className="text-6xl mb-4 block">💚</span>
-                        <p className="text-gray-800 font-medium text-lg">اصنع محتوى يستبدل الخوف بالفهم</p>
+                    <div className="bg-orange-50 p-8 rounded-2xl border border-orange-100 hover:shadow-md transition-all text-center">
+                        <span className="text-5xl mb-4 block">✨</span>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">{t('bystander.positive.title')}</h4>
+                        <p className="text-gray-600 text-sm">{t('bystander.positive.desc')}</p>
                     </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-10 rounded-2xl text-white text-center">
-                    <p className="text-2xl leading-relaxed font-medium">
-                        الكراهية تنتشر بسرعة لأنها تعتمد على ردود الفعل اللحظية. أما مواجهة الكراهية فتعتمد على وعيٍ بطيء وعميق: وعي يبدأ من مستخدم واحد… ويمكن أن يغيّر الفضاء كله.
+                <div className="bg-orange-50 border-r-4 border-orange-500 p-6 rounded-xl">
+                    <p className="text-orange-900 text-lg italic font-medium">
+                        {t('bystander.note')}
+                    </p>
+                </div>
+            </section>
+
+            {/* Section 3: Make Space Safe */}
+            <section className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="bg-purple-100 p-3 rounded-xl">
+                        <IconCommunity />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                        {t('safeSpace.title')}
+                    </h3>
+                </div>
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                    {t('safeSpace.intro')}
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                    <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all text-center">
+                        <span className="text-6xl mb-6 block">🛑</span>
+                        <p className="text-gray-800 font-bold text-lg">{t('safeSpace.reduce')}</p>
+                    </div>
+                    <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all text-center">
+                        <span className="text-6xl mb-6 block">📚</span>
+                        <p className="text-gray-800 font-bold text-lg">{t('safeSpace.share')}</p>
+                    </div>
+                    <div className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all text-center">
+                        <span className="text-6xl mb-6 block">💚</span>
+                        <p className="text-gray-800 font-bold text-lg">{t('safeSpace.create')}</p>
+                    </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-10 rounded-2xl text-white text-center shadow-lg">
+                    <p className="text-2xl leading-relaxed font-bold opacity-90">
+                        "{t('safeSpace.quote')}"
                     </p>
                 </div>
             </section>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 p-12 rounded-3xl border-2 border-green-200 text-center">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">هل واجهت خطاب كراهية؟</h3>
-                <p className="text-xl text-gray-700 mb-8">ابدأ بتحليل المحتوى والحصول على تقرير قانوني</p>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-12 rounded-3xl text-center shadow-lg text-white">
+                <h3 className="text-3xl font-bold mb-6">{t('cta.title')}</h3>
+                <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">{t('cta.desc')}</p>
                 <Link
                     href="/#analyze"
-                    className="inline-block bg-gradient-to-r from-green-600 to-blue-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105"
+                    className="inline-block bg-[#1E8C4E] text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-[#166639] hover:shadow-xl transition-all transform hover:-translate-y-1"
                 >
-                    🔍 ابدأ التحليل الآن
+                    {t('cta.button')}
                 </Link>
             </div>
         </div>

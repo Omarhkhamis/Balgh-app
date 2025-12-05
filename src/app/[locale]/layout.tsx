@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { locales, type Locale } from '../../../i18n.config';
+import { locales, type Locale } from '../../i18n.config';
 import '../globals.css';
 
 type Props = {
@@ -34,7 +34,8 @@ export default async function LocaleLayout(props: Props) {
 
     return (
         <html lang={validLocale} dir={validLocale === 'ar' ? 'rtl' : 'ltr'}>
-            <body className="antialiased bg-gray-50 text-gray-900">
+            <body className={`antialiased bg-gray-50 text-gray-900 font-sans`}>
+                <div className="bg-noise"></div>
                 <NextIntlClientProvider
                     locale={validLocale}
                     messages={messages}

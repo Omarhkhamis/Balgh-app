@@ -1,16 +1,21 @@
 export interface AnalysisResult {
     classification: string;
-    severity_score: number;
     risk_level: string;
-    reasoning_ar: string;
-    violation_type: string;
-    target_group: string;
-    text: string;
+    scores: {
+        intensity: string;
+        vulnerability: string;
+        context: string;
+    };
+    target_group?: string;
+    detected_markers: string[];
+    rationale: string;
+    // Optional legacy fields for backward compatibility if needed, or new fields
+    text?: string;
+    image_description?: string;
     legal_citation?: string;
-    reasoning?: string;
-    vulnerability_score?: number;
-    context_score?: number;
-    intent_signal?: string;
+    // Mapped fields for UI compatibility
+    severity_score?: number;
+    reasoning_ar?: string;
 }
 
 export interface LegalInfo {

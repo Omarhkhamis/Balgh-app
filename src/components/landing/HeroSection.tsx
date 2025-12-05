@@ -9,7 +9,7 @@ export default function HeroSection() {
     const tTrust = useTranslations('landing.trustIndicators');
 
     return (
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-white via-gray-50 to-white px-4 py-16 overflow-hidden">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-white via-gray-50/50 to-white px-4 py-16 overflow-hidden">
             {/* Subtle Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03]" style={{
                 backgroundImage: 'radial-gradient(circle, #16a34a 1px, transparent 1px)',
@@ -18,17 +18,17 @@ export default function HeroSection() {
 
             <div className="container mx-auto max-w-5xl text-center relative z-10">
                 {/* Main Heading */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-8 leading-tight animate-fade-up">
                     {t('title')}
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-up delay-100">
                     {t('subtitle')}
                 </p>
 
                 {/* Enhanced CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-up delay-200">
                     {/* Primary CTA - Gradient with Icon */}
                     <Link
                         href={`/${locale}/analyze`}

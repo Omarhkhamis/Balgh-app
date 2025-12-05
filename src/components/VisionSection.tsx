@@ -12,7 +12,7 @@ export default function VisionSection() {
 
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Vision */}
-                    <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg border border-green-100">
+                    <div className="bg-gradient-to-br from-green-50/50 to-white p-8 rounded-2xl shadow-lg border border-green-100 ltr:border-l-4 rtl:border-r-4 border-green-500">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">🌟 الرؤية</h3>
                         <p className="text-gray-700 leading-relaxed text-lg">
                             فضاء رقمي خالٍ من خطاب العنف والكراهية، يسوده الاحترام والتعايش السلمي، ويُحاسب فيه المحرضون وفق القانون.
@@ -20,7 +20,7 @@ export default function VisionSection() {
                     </div>
 
                     {/* Mission */}
-                    <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg border border-blue-100">
+                    <div className="bg-gradient-to-br from-blue-50/50 to-white p-8 rounded-2xl shadow-lg border border-blue-100 ltr:border-l-4 rtl:border-r-4 border-blue-500">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">🎯 الرسالة</h3>
                         <p className="text-gray-700 leading-relaxed text-lg">
                             رصد وتوثيق ومساءلة خطاب العنف والكراهية في الفضاء الرقمي، باستخدام التكنولوجيا والمنهجية العلمية، لحماية المجتمعات وتعزيز السلام.

@@ -18,11 +18,13 @@
             "protection": "Digital Protection",
             "monitoring": "Reports & Research",
             "training": "Specialized Training",
+            "reports": "Reports & Studies",
             "news": "News",
             "faq": "FAQ"
         },
         "cta": "Start Analysis",
-        "menuLabel": "Menu"
+        "menuLabel": "Menu",
+        "backToHome": "Back to Home"
     },
     "landing": {
         "hero": {
@@ -76,6 +78,13 @@
             "videoBadge": "Video",
             "readMore": "Read More",
             "viewAll": "View All News"
+        },
+        "finalCta": {
+            "title": "Have you been exposed to hate speech?",
+            "subtitle": "Don't hesitate to use our free tool for instant analysis and a ready-to-use legal report",
+            "primaryButton": "Start Analysis Now",
+            "secondaryButton": "Contact Us",
+            "trustBadge": "100% Safe & Free • Your data is protected"
         }
     },
     "footer": {
@@ -90,10 +99,10 @@
         },
         "contact": {
             "title": "Contact Us",
-            "socialMedia": "Social Media",
+            "socialMedia": "For inquiries and partnerships",
             "cta": "Start Analysis"
         },
-        "copyright": "© 2024 Counter Hate Speech and Violence Initiative - All Rights Reserved",
+        "copyright": "© 2024 Violence and Hate Speech Combat Initiative - All Rights Reserved",
         "privacy": "Privacy Policy",
         "terms": "Terms & Conditions"
     },
@@ -107,12 +116,13 @@
             "placeholder": "Paste any text, comment, post or paragraph you want to check…",
             "charCount": "{count} characters",
             "submitButton": "Start Text Analysis",
-            "analyzingButton": "Analyzing..."
+            "analyzingButton": "Analyzing...",
+            "uploadImage": "Upload Image"
         },
         "trustIndicators": {
-            "security": "Secure & Encrypted Analysis",
-            "methodology": "Certified Scientific Methodology",
-            "review": "Specialized Human Review"
+            "ai": "AI-Powered Analysis",
+            "review": "Human Review When Needed",
+            "methodology": "Methodology Based on Syrian Context"
         }
     },
     "results": {
@@ -123,6 +133,36 @@
         "actions": "Recommended Actions",
         "reportButton": "Legal Report",
         "feedbackButton": "Report Error",
+        "criteria": "Evaluation Criteria",
+        "severity": "Severity",
+        "vulnerability": "Vulnerability",
+        "context": "Context",
+        "share": "Share Result",
+        "shareDesc": "Share the result on social media or copy it",
+        "reportingScreen": "Reporting Screen",
+        "reportSelf": "Report Yourself",
+        "reportSelfDesc": "Direct report to authorities",
+        "reportInitiative": "Report via Initiative",
+        "reportInitiativeDesc": "We help you report",
+        "selectCountry": "Select Country",
+        "legalInfo": "Legal Information",
+        "laws": "Laws",
+        "agencies": "Reporting Agencies",
+        "directLink": "Direct Link",
+        "generateReport": "Generate Legal Report",
+        "generating": "Generating Report...",
+        "copyReport": "Copy Report",
+        "postLink": "Post Link",
+        "reporterCountry": "Reporter Country",
+        "targetGroup": "Against Which Group?",
+        "submitReport": "Submit Report",
+        "reportSuccess": "Report submitted successfully! We will contact you soon.",
+        "reportError": "Error submitting report",
+        "fillAllFields": "Please fill all fields",
+        "reviewMessage": "Your report will be reviewed by the initiative team and we will contact you soon",
+        "detectedDeterminants": "Detected Determinants",
+        "intentSignal": "Intent Signal",
+        "targetGroupLabel": "Target Group",
         "categories": {
             "hate_speech": "Hate Speech",
             "harassment": "Harassment",
@@ -132,7 +172,33 @@
             "high": "High",
             "medium": "Medium",
             "low": "Low"
+        },
+        "target_groups": {
+            "Alawites": "Alawites",
+            "Druze": "Druze",
+            "Sunnis": "Sunnis",
+            "Kurds": "Kurds",
+            "Christians": "Christians",
+            "Shia": "Shia",
+            "Women": "Women",
+            "None": "None"
+        },
+        "intent_signals": {
+            "Explicit violence": "Explicit violence",
+            "Dehumanization": "Dehumanization",
+            "Stereotyping": "Stereotyping",
+            "Insult": "Insult",
+            "Treason Accusation": "Treason Accusation",
+            "Mockery of Suffering": "Mockery of Suffering",
+            "None": "None"
         }
+    },
+    "monitoring": {
+        "title": "Monitoring & Reporting",
+        "subtitle": "Analysis results and reporting options for violating content",
+        "noResultsTitle": "No Results",
+        "noResultsDesc": "Analyze text first to view results here",
+        "analyzeButton": "Analyze Content Now"
     },
     "feedback": {
         "title": "Report Incorrect Classification",
@@ -148,9 +214,39 @@
     },
     "legal": {
         "title": "Legal Protection",
-        "description": "This section outlines the legal framework for hate speech in multiple countries. The goal is to help users understand their rights, identify the official authorities responsible for receiving reports, and distinguish between what constitutes illegal speech and what falls under freedom of expression.",
+        "description": "This section outlines the legal framework for hate speech in various countries. The goal is to help users understand their rights, identify responsible official bodies, and distinguish between illegal speech and freedom of expression.",
+        "map": {
+            "title": "International Legal Framework",
+            "mapView": "Map",
+            "listView": "List",
+            "clickMore": "Click for more",
+            "mobileHint": "Hard to click? Try list view"
+        },
+        "modal": {
+            "relevantLaws": "Relevant Laws",
+            "reportingAgencies": "Reporting Agencies",
+            "visitWebsite": "Visit Website",
+            "importantNote": "Important Note",
+            "evidenceNote": "Ensure you keep evidence (screenshots, links) before reporting. Some platforms may request additional information.",
+            "close": "Close"
+        },
+        "countries": {
+            "Syria": "Syria",
+            "Germany": "Germany",
+            "Turkey": "Turkey",
+            "France": "France",
+            "Belgium": "Belgium",
+            "Sweden": "Sweden",
+            "Netherlands": "Netherlands",
+            "USA": "USA",
+            "UK": "UK",
+            "Canada": "Canada",
+            "Austria": "Austria",
+            "Switzerland": "Switzerland",
+            "Spain": "Spain"
+        },
         "tabs": {
-            "hateSpeech": "Hate Speech Legally",
+            "hateSpeech": "Legal Hate Speech Legally",
             "documentation": "How to Document the Crime?",
             "laws": "Applicable Laws",
             "reporting": "Reporting Mechanism",
@@ -360,6 +456,7 @@
                     "solution": "Document immediately, and use archiving tools before deletion."
                 }
             ],
+            "solutionLabel": "Solution:",
             "crimeTitle": "When is content a crime?",
             "clearCrimeTitle": "Clear Crime",
             "clearCrimeList": [
@@ -386,39 +483,27 @@
                 "Non-offensive satire",
                 "Expressing opposing opinions"
             ],
-            "faqTitle": "Frequently Asked Questions",
+            "faqTitle": "Common Legal Questions",
             "faqs": [
                 {
-                    "q": "Can I report anonymously?",
-                    "a": "Yes, you can report anonymously through our platform. However, for official legal follow-up, authorities may need your identity as a witness."
+                    "q": "Is my data safe when using the tool?",
+                    "a": "Yes. The initiative stores input texts to improve monitoring and analysis accuracy, without linking them to users or their identities. Data related to reports is stored with high privacy measures and used exclusively for legal and research purposes related to combating hate speech."
                 },
                 {
-                    "q": "What if the content is in a private message?",
-                    "a": "Private content is difficult to pursue legally unless it constitutes a direct threat. We recommend reporting directly to the police in cases of personal threats."
+                    "q": "How can I report offensive content?",
+                    "a": "After analyzing the text, the classification result is shown to the user. If the content contains hate speech or dangerous incitement, a legal report can be generated according to the laws of the chosen country, whether inside or outside Syria. Reports are sent to competent authorities or can be downloaded and used directly in the reporting process."
                 },
                 {
-                    "q": "Do I need a lawyer to report?",
-                    "a": "Not necessary for the initial report. However, if it escalates to a legal case, you may need to consult a lawyer specializing in hate speech cases."
+                    "q": "What is hate speech? And how do we distinguish it from freedom of expression?",
+                    "a": "Hate speech is expression that targets an individual or group based on their religious, sectarian, gender, or regional identity, and is based on incitement, stigmatization, or dehumanization. Freedom of expression remains protected unless it turns into incitement or collective abuse. This distinction helps protect public debate without normalizing verbal violence."
                 },
                 {
-                    "q": "How long does the investigation take?",
-                    "a": "It varies by country and authority. It may take from weeks to several months. Keep the report number for follow-up."
+                    "q": "What happens after submitting a formal report?",
+                    "a": "A legal report is generated containing the violating text, risk level analysis, and the legal basis related to the chosen country. It is then forwarded to the initiative's partners or downloaded directly by the user for use in reporting to competent authorities."
                 },
                 {
-                    "q": "What if the content was deleted before reporting?",
-                    "a": "If you documented the content (screenshot + archiving), you can report. Saved evidence is sufficient for legal follow-up."
-                },
-                {
-                    "q": "Can I report old content?",
-                    "a": "Yes, but it is better to report immediately. Some laws have statutes of limitations. Check the law in your country."
-                },
-                {
-                    "q": "What happens after reporting?",
-                    "a": "Authorities review the report, investigate the content, and may request additional information. The publisher may be summoned for questioning or legal action taken."
-                },
-                {
-                    "q": "Does reporting guarantee content removal?",
-                    "a": "Not necessarily. Removal depends on platform policies and local laws. However, official reporting increases the chances of action being taken."
+                    "q": "What should I do if I receive a direct threat?",
+                    "a": "It is advised to save full evidence (text, link, date), analyze the content via the tool, generate a legal report, and then inform competent authorities in the country of residence. You can also contact the initiative for technical or guidance support."
                 }
             ],
             "helpTitle": "Didn't find an answer?",
@@ -426,8 +511,440 @@
             "contactButton": "Contact Us"
         }
     },
+    "training": {
+        "title": "Specialized Training",
+        "subtitle": "The initiative provides specialized training programs aimed at enhancing the capacity of Syrian individuals and organizations to understand, monitor, and address the risks of hate speech.",
+        "quote": "We build awareness… We create safety… Towards resilient Syrian communities",
+        "programsTitle": "Our Training Programs",
+        "programs": {
+            "hateSpeech": {
+                "title": "Hate Speech Combating Program",
+                "description": "A comprehensive training program that introduces basic concepts, levels of hate speech, and analysis of real-world examples",
+                "duration": "3 days",
+                "target": "Activists, civil society organizations"
+            },
+            "narrative": {
+                "title": "Narrative Analysis Program",
+                "description": "Designed for activists and journalists to understand how sectarian and regional narratives are formed",
+                "duration": "2-3 days",
+                "target": "Journalists, researchers"
+            },
+            "digitalProtection": {
+                "title": "Digital Protection & Combating Cyber Violence",
+                "description": "A practical program to protect youth and activists from bullying and sectarian targeting",
+                "duration": "1 day",
+                "target": "Youth, activists"
+            },
+            "monitoring": {
+                "title": "Monitoring Team Training",
+                "description": "A specialized program to build a team capable of data extraction and content classification",
+                "duration": "5 days",
+                "target": "Monitors, analysts"
+            },
+            "counterSpeech": {
+                "title": "Alternative Speech Production",
+                "description": "An innovative program that trains participants to create positive content that counters hate speech",
+                "duration": "2-3 days",
+                "target": "Content creators, media professionals"
+            }
+        },
+        "durationLabel": "Duration:",
+        "targetLabel": "Target Audience:",
+        "formatsTitle": "Training Formats",
+        "formats": {
+            "faceToFace": {
+                "title": "Face-to-Face",
+                "desc": "In-person training in classrooms"
+            },
+            "online": {
+                "title": "Online",
+                "desc": "Interactive online sessions"
+            },
+            "shortSessions": {
+                "title": "Short Sessions",
+                "desc": "Intensive workshops"
+            },
+            "trainers": {
+                "title": "Training of Trainers",
+                "desc": "Building trainer capacity"
+            }
+        },
+        "audienceTitle": "Target Audience",
+        "audience": {
+            "civilSociety": {
+                "title": "Civil Society Organizations",
+                "items": [
+                    "Protection teams",
+                    "Humanitarian organizations",
+                    "Local initiatives"
+                ]
+            },
+            "media": {
+                "title": "Media Professionals & Researchers",
+                "items": [
+                    "Journalists",
+                    "Researchers",
+                    "University students"
+                ]
+            },
+            "youth": {
+                "title": "Youth & Activists",
+                "items": [
+                    "Youth initiatives",
+                    "Digital activists",
+                    "Community leaders"
+                ]
+            }
+        },
+        "importanceTitle": "Why Are These Programs Important?",
+        "importance": [
+            "Much of the violence in Syria began with words",
+            "Training helps build community awareness",
+            "Protecting targeted groups from hate speech",
+            "Interactive workshops for journalists and content creators on covering conflicts without incitement language. Includes case study analysis and practical application of peace journalism",
+            "Enhancing organizations' capacity to deal with harmful speech",
+            "Supporting social cohesion and coexistence"
+        ],
+        "ctaTitle": "Interested in Training?",
+        "ctaSubtitle": "Contact us to learn more about our training programs",
+        "ctaButton": "Contact Us",
+        "footerTitle": "Contact Us",
+        "footerSubtitle": "For inquiries, partnerships, and content reporting",
+        "footerCopyright": "© 2024 Initiative to Combat Violence and Hate Speech - All Rights Reserved"
+    },
+    "news": {
+        "title": "News & Activities",
+        "subtitle": "Follow our latest activities and events in combating hate speech and promoting social peace",
+        "categories": {
+            "all": "All",
+            "training": "Training",
+            "media": "Media Interviews",
+            "event": "Event Participation",
+            "report": "Reports & Studies",
+            "achievement": "Achievements",
+            "statement": "Statements"
+        },
+        "noNews": "No news in this category currently",
+        "videoBadge": "Video",
+        "readMore": "Read More",
+        "dateFormat": "en-GB"
+    },
+    "protection": {
+        "title": "Digital Protection – How to Protect Yourself from Hate Speech?",
+        "subtitle": "The digital space is witnessing an escalation in sectarian and inflammatory speech, and daily content is turning into a tool that reshapes relationships between components and groups. This section is a practical guide to help you confront this speech, protect yourself and your surroundings, and contribute to building a safer digital environment.",
+        "tabs": {
+            "awareness": "Understand & Analyze",
+            "tools": "Protect & Report",
+            "responsibility": "Solidarity & Confront"
+        },
+        "content": {
+            "awareness": {
+                "title": "🧠 Understand & Analyze - Hate Speech Awareness",
+                "intro": "Before you can protect yourself, you must understand how hate is built and how it spreads. This section helps you develop a 'critical eye' to detect harmful speech before you are affected by it.",
+                "timeline": {
+                    "title": "🔍 Observe how hate is built... so you can stop it",
+                    "intro": "Hate speech doesn't appear suddenly; it goes through three clear stages:",
+                    "stages": {
+                        "1": {
+                            "title": "Dehumanization & Preparation",
+                            "desc": "Small words are used to dehumanize the other: 'insects', 'germs', 'traitors'... simple words but they prepare the ground for accepting violence."
+                        },
+                        "2": {
+                            "title": "Media Justification",
+                            "desc": "This language is recycled through media pages or influential accounts, turning into 'legitimate' or 'socially acceptable' speech."
+                        },
+                        "3": {
+                            "title": "Rapid Spread & Contagion",
+                            "desc": "It spreads via hashtags, memes, short videos, and fake accounts, reaching a wide audience that repeats it unconsciously."
+                        }
+                    },
+                    "tip": "💡 Tip: When you understand these stages, recognizing harmful speech becomes an automatic step that helps you stop it and not engage in it."
+                },
+                "checklist": {
+                    "title": "❓ Analyze content before interacting with it",
+                    "intro": "When viewing a post regarding a group, sect, or region, use this quick filter to determine its nature:",
+                    "questions": {
+                        "0": "Does it target identity? (Instead of individual action)",
+                        "1": "Does it include dehumanization or insults?",
+                        "2": "Does it drive you to fear or anger instead of understanding?",
+                        "3": "Does it generalize to a whole group based on an individual act?",
+                        "4": "Does it use inflammatory or violent language?"
+                    },
+                    "results": {
+                        "low": "Start analyzing content...",
+                        "medium": "⚠️ Medium Probability - Review content carefully",
+                        "high": "🚨 High Probability - This is likely hate speech"
+                    },
+                    "contextAlert": "⚠️ Clear warning sign in Syrian context: Much content starts with a normal sentence and ends with a complete generalization: 'All Druze...', 'All Sunnis...', 'Alawites always...'. This jump from individual to group is a strong indicator of hate speech."
+                },
+                "misinfo": {
+                    "title": "🛑 Avoid falling for misinformation that creates hate",
+                    "intro": "Before sharing any post, pay attention to four mechanisms used daily to create sectarian and regional narratives:",
+                    "headers": {
+                        "mechanism": "Misinformation Mechanism",
+                        "definition": "Definition and Application",
+                        "example": "Example"
+                    },
+                    "mechanisms": {
+                        "framing": {
+                            "name": "Framing",
+                            "def": "When a story is presented from only one angle to reach a predetermined conclusion.",
+                            "ex": "Showing one incident to represent the 'nature' of an entire group"
+                        },
+                        "generalization": {
+                            "name": "Generalization",
+                            "def": "When an individual's action (one incident) turns into 'group traits' or a characteristic of an entire region.",
+                            "ex": "'All people of region X are...' based on one person's act"
+                        },
+                        "halfTruth": {
+                            "name": "Half-Truth",
+                            "def": "When content presents correct information but hides the rest of the context to create a misleading and inflammatory narrative.",
+                            "ex": "Mentioning part of the event and hiding the full context"
+                        },
+                        "echoChambers": {
+                            "name": "Echo Chambers",
+                            "def": "When the platform shows you content that resembles your convictions only, making you feel that 'everyone' thinks like you.",
+                            "ex": "In Syria, echo chambers are responsible for creating waves of collective anger that amplify rumors"
+                        }
+                    },
+                    "tip": "💡 Remember: When you recognize these patterns, deconstructing hateful speech becomes easier than resharing it."
+                },
+                "cta": {
+                    "title": "Ready to protect yourself?",
+                    "desc": "Now that you understand how hate is built, learn how to protect yourself technically and how to report harmful content.",
+                    "button": "⚙️ Go to Tools & Protection ←"
+                }
+            },
+            "tools": {
+                "title": "⚙️ Protect & Report - Technical Tools",
+                "intro": "Now that you understand how hate is built, it's time to learn how to protect yourself technically and how to report harmful content effectively.",
+                "protection": {
+                    "title": "🔒 Protect yourself technically before protecting your speech",
+                    "intro": "Secure your digital space just as you secure your home door:",
+                    "items": {
+                        "privacy": {
+                            "title": "Privacy First",
+                            "desc": "Change privacy settings regularly"
+                        },
+                        "unknown": {
+                            "title": "Avoid Unknown",
+                            "desc": "Beware of friend requests/messages from unknown accounts"
+                        },
+                        "data": {
+                            "title": "Data Security",
+                            "desc": "Prevent any app from unnecessary access to personal data"
+                        },
+                        "password": {
+                            "title": "Strong Passwords",
+                            "desc": "Use complex and different passwords for each platform"
+                        },
+                        "twofactor": {
+                            "title": "Two-Factor Auth",
+                            "desc": "Enable 2FA on all your accounts"
+                        }
+                    },
+                    "completion": "🎉 Excellent! Your account is now better protected"
+                },
+                "immediate": {
+                    "title": "🚨 When facing inciting content: Immediate Actions",
+                    "document": {
+                        "title": "Document",
+                        "desc": "Take a screenshot with link and date as evidence"
+                    },
+                    "report": {
+                        "title": "Report",
+                        "desc": "Report directly within the platform for content violation"
+                    },
+                    "ignore": {
+                        "title": "Don't Interact",
+                        "desc": "Even negative interaction increases spread"
+                    },
+                    "warning": "⚠️ Remember: Fake accounts grow and succeed through real users' interaction with them"
+                },
+                "reporting": {
+                    "title": "⚖️ Advanced Reporting Steps",
+                    "intro": "💡 Reporting is not a restriction on freedom - it is a community protection tool",
+                    "steps": {
+                        "1": {
+                            "title": "Additional Documentation",
+                            "desc": "Document the full post: screenshot including link, date, account name, and full content.",
+                            "tips": {
+                                "0": "Save image with clear date",
+                                "1": "Record direct link",
+                                "2": "Document offensive comments"
+                            }
+                        },
+                        "2": {
+                            "title": "Internal Reporting",
+                            "desc": "Send report inside the platform (Facebook, Twitter, Instagram, etc.) using 'Report' option.",
+                            "tips": {
+                                "0": "Choose 'Hate Speech' as reason",
+                                "1": "Be specific in description",
+                                "2": "Follow up on report status"
+                            }
+                        },
+                        "3": {
+                            "title": "Legal Contact",
+                            "desc": "Share the case (if desired) with specialized bodies or legal initiatives documenting digital violations.",
+                            "tips": {
+                                "0": "Check laws page for competent bodies",
+                                "1": "Keep a copy of documentation",
+                                "2": "Don't share sensitive personal info"
+                            }
+                        }
+                    },
+                    "note": "⚠️ Remember: The reporting process is not a punitive measure, but a community protection tool"
+                },
+                "cta": {
+                    "title": "Exposed to hate speech?",
+                    "desc": "Check applicable laws and competent authorities for receiving reports",
+                    "button": "⚖️ Go to Laws & Reporting Page ←"
+                }
+            },
+            "responsibility": {
+                "title": "🤝 Solidarity & Confront - Social Responsibility",
+                "intro": "Digital protection is not just about protecting yourself, but about protecting others and building a safe digital space for everyone.",
+                "protectOthers": {
+                    "title": "🤝 Contribute to protecting others from targeting",
+                    "intro": "When you see someone targeted by sectarian, gender, or regional speech, do not leave them alone:",
+                    "support": {
+                        "title": "Immediate Support",
+                        "desc": "One word of support breaks the psychological impact of abuse. Contact the targeted person and tell them you stand with them."
+                    },
+                    "reporting": {
+                        "title": "Mass Reporting",
+                        "desc": "Multiple reports on the same content reduce its spread and increase speed of removal from the platform."
+                    },
+                    "note": "💡 Remember: Hate speech often targets the most vulnerable groups in society. Solidarity is not a symbolic act, but direct protection that prevents language from turning into action, and contributes to building a safe digital space for everyone."
+                },
+                "bystander": {
+                    "title": "🗣️ Don't be just a 'bystander': You are part of the narrative",
+                    "intro": "Silence in the face of hate speech means allowing it to continue. Always choose a small action:",
+                    "stop": {
+                        "title": "Stop Sharing",
+                        "desc": "Don't share harmful content even if your goal is to condemn"
+                    },
+                    "warn": {
+                        "title": "Warn Friends",
+                        "desc": "Alert your circle about misinformation and rumors"
+                    },
+                    "positive": {
+                        "title": "Spread Positivity",
+                        "desc": "Share stories of cooperation between Syrians"
+                    },
+                    "note": "💡 Remind others that words create fears, and also create trust. In a fragile context like Syria, every linguistic choice affects civil peace more than we imagine."
+                },
+                "safeSpace": {
+                    "title": "✨ Make digital space a safe space",
+                    "intro": "Digital protection is not just about what you don't do, but what you choose to do:",
+                    "reduce": "Reduce spread of harmful speech",
+                    "share": "Share correct knowledge",
+                    "create": "Create content that replaces fear with understanding",
+                    "quote": "Hate spreads fast because it relies on instant reactions. Countering hate relies on slow and deep awareness: awareness that starts from one user... and can change the whole space."
+                },
+                "cta": {
+                    "title": "Faced hate speech?",
+                    "desc": "Start analyzing content and getting a legal report",
+                    "button": "🔍 Start Analysis Now"
+                }
+            }
+        }
+    },
     "metadata": {
         "title": "Violence and Hate Speech Combat Initiative",
         "description": "An AI-powered analysis tool for detecting and classifying hate speech"
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most frequently asked questions about the initiative and how it works",
+        "items": [
+            {
+                "q": "What is the Baligh Initiative?",
+                "a": "The Baligh Initiative is a civic-tech project aimed at monitoring and combating violence and hate speech in the Syrian digital space. The initiative relies on combining automated text analysis with human review, and is based on research and legal expertise to provide accurate content classification and reliable reporting services."
+            },
+            {
+                "q": "How is the text analyzed?",
+                "a": "Analysis begins with an AI model trained on Syrian dialects and context to determine the severity of the speech. In complex or sensitive cases, a specialized team reviews the results to ensure accuracy and minimize bias. This dual approach combines the speed of technology with the expertise of specialists."
+            },
+            {
+                "q": "Is my data safe when using the tool?",
+                "a": "Yes. The initiative stores input texts to improve monitoring and analysis accuracy, without linking them to users or their identities. Data related to reports is stored with high privacy measures and used exclusively for legal and research purposes related to combating hate speech."
+            },
+            {
+                "q": "How can I report offensive content?",
+                "a": "After analyzing the text, the classification result is shown to the user. If the content contains hate speech or dangerous incitement, a legal report can be generated according to the laws of the chosen country, whether inside or outside Syria. Reports are sent to competent authorities or can be downloaded and used directly in the reporting process."
+            },
+            {
+                "q": "What is hate speech? And how do we distinguish it from freedom of expression?",
+                "a": "Hate speech is expression that targets an individual or group based on their religious, sectarian, gender, or regional identity, and is based on incitement, stigmatization, or dehumanization. Freedom of expression remains protected unless it turns into incitement or collective abuse. This distinction helps protect public debate without normalizing verbal violence."
+            },
+            {
+                "q": "Does the analysis rely entirely on AI?",
+                "a": "No. AI is an assisting tool, not the final arbiter. The model performs the initial classification, while sensitive cases are reviewed by humans to ensure higher accuracy in understanding the context, language, and narratives prevalent in Syrian discourse."
+            },
+            {
+                "q": "What should I do if I think the system made a mistake?",
+                "a": "You can submit a request for manual review. The text and context are re-read, and the classification is corrected if an error is proven. This process aims to build user trust and continuously develop the system."
+            },
+            {
+                "q": "What happens after submitting a formal report?",
+                "a": "A legal report is generated containing the violating text, risk level analysis, and the legal basis related to the chosen country. It is then forwarded to the initiative's partners or downloaded directly by the user for use in reporting to competent authorities."
+            },
+            {
+                "q": "Do I need to create an account?",
+                "a": "No. Everyone can use the analysis tool without registration. An account becomes useful for those who wish to save a record of reports or track them."
+            },
+            {
+                "q": "Can the tool be used for research or educational purposes?",
+                "a": "Yes. The tool is used in training programs, research on digital media and civil peace, and in building anti-hate speech curricula. The initiative can provide technical or methodological support to interested parties."
+            },
+            {
+                "q": "Is the tool only for Syrians?",
+                "a": "Although the tool is specifically developed for Syrian dialects and narratives, its use is available to anyone who wishes to understand hate speech in Arabic or monitor incitement patterns in similar contexts."
+            },
+            {
+                "q": "What type of content cannot be analyzed currently?",
+                "a": "The system cannot analyze non-textual images, long videos, or audio recordings. Work is underway to add OCR and audio processing tools to expand the scope of analysis in the future."
+            },
+            {
+                "q": "Why should hate speech be reported?",
+                "a": "Because hate speech is not just words, but a precursor to violence and division. Numerous experiences in conflict countries have shown that ignoring this speech leads to mass crimes and threatens civil peace. Reporting is a preventive practice aimed at protecting society and promoting accountability."
+            },
+            {
+                "q": "What should I do if I receive a direct threat?",
+                "a": "It is advised to save full evidence (text, link, date), analyze the content via the tool, generate a legal report, and then inform competent authorities in the country of residence. You can also contact the initiative for technical or guidance support."
+            },
+            {
+                "q": "Who are the initiative's partners?",
+                "a": "The initiative operates within a wide cooperation network including lawyers inside and outside Syria, civil society organizations, media institutions, and researchers in digital rights fields, allowing it to combine legal expertise, technical capability, and research knowledge in a comprehensive approach to hate speech."
+            },
+            {
+                "q": "How can I join or volunteer?",
+                "a": "You can contact us via the 'Join Us' page. The initiative welcomes volunteers in the fields of monitoring, research, design, translation, and legal analysis."
+            },
+            {
+                "q": "Is the initiative a political entity?",
+                "a": "No. The initiative is completely independent and does not belong to any political or partisan entity. Its goal is to curb hate speech, promote citizenship values, and build a safe and responsible digital space."
+            }
+        ]
+    },
+    "reports": {
+        "categories": {
+            "all": "All",
+            "initiative": "Initiative Reports",
+            "analytical": "Analytical Reports",
+            "study": "Studies"
+        },
+        "title": "Reports & Studies",
+        "subtitle": "In-depth analysis and periodic reports on hate speech trends",
+        "readMore": "Read Report",
+        "download": "Download PDF",
+        "noReports": "No reports available at the moment",
+        "intro": "The 'Baligh' initiative seeks to provide in-depth analysis and periodic reports on hate speech trends in the digital space. We believe in the importance of data and research in understanding this phenomenon and developing effective strategies to combat it.",
+        "callForSubmissions": {
+            "title": "Call for Papers",
+            "description": "Are you a researcher or academic interested in digital rights and hate speech? We invite you to publish your research and studies through our platform. We welcome contributions that help enrich the Arabic and Kurdish content in this field.",
+            "button": "Submit Your Research"
+        }
     }
 }

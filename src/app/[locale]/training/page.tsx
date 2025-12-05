@@ -1,95 +1,162 @@
-import { Metadata } from 'next';
-import AppHeader from '../../../components/AppHeader';
+'use client';
 
-export const metadata: Metadata = {
-    title: "البرامج والتدريب | بلّغ",
-    description: "برامج تدريبية متخصصة لمكافحة خطاب الكراهية وحماية المجتمعات",
-};
+import AppHeader from '../../../components/AppHeader';
+import AppFooter from '../../../components/AppFooter';
+import PageHero from '../../../components/PageHero';
+import { useTranslations, useLocale } from 'next-intl';
+
+// Icons
+const IconGraduation = () => (
+    <svg className="w-12 h-12 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+    </svg>
+);
+
+const IconChart = () => (
+    <svg className="w-12 h-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    </svg>
+);
+
+const IconShield = () => (
+    <svg className="w-12 h-12 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>
+);
+
+const IconSearch = () => (
+    <svg className="w-12 h-12 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+);
+
+const IconSparkles = () => (
+    <svg className="w-12 h-12 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>
+);
+
+const IconFaceToFace = () => (
+    <svg className="w-10 h-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+);
+
+const IconOnline = () => (
+    <svg className="w-10 h-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+);
+
+const IconLightning = () => (
+    <svg className="w-10 h-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+);
+
+const IconTarget = () => (
+    <svg className="w-10 h-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
 
 export default function TrainingPage() {
+    const t = useTranslations('training');
+    const locale = useLocale();
+
     const programs = [
         {
-            icon: '🎓',
-            title: 'برنامج مكافحة خطاب الكراهية',
-            description: 'برنامج تدريبي شامل يعرّف بالمفاهيم الأساسية ومستويات الخطاب وتحليل الأمثلة الواقعية',
-            duration: '3 أيام',
-            target: 'ناشطون، منظمات مجتمع مدني',
+            icon: IconGraduation,
+            key: 'hateSpeech',
             color: 'blue'
         },
         {
-            icon: '📊',
-            title: 'برنامج تحليل السرديات',
-            description: 'مصمم للناشطين والصحفيين لفهم كيفية تشكّل السرديات الطائفية والمناطقية',
-            duration: '2-3 أيام',
-            target: 'صحفيون، باحثون',
+            icon: IconChart,
+            key: 'narrative',
             color: 'green'
         },
         {
-            icon: '🛡️',
-            title: 'الحماية الرقمية ومواجهة العنف الإلكتروني',
-            description: 'برنامج عملي لحماية الشباب والناشطين من التنمر والاستهداف الطائفي',
-            duration: 'يوم واحد',
-            target: 'شباب، ناشطون',
+            icon: IconShield,
+            key: 'digitalProtection',
             color: 'purple'
         },
         {
-            icon: '🔍',
-            title: 'تدريب الراصدين',
-            description: 'برنامج متخصص لبناء فريق قادر على تفريغ البيانات وتصنيف المحتوى',
-            duration: '5 أيام',
-            target: 'راصدون، محللون',
+            icon: IconSearch,
+            key: 'monitoring',
             color: 'orange'
         },
         {
-            icon: '✨',
-            title: 'إنتاج خطاب بديل',
-            description: 'برنامج مبتكر يُدرّب على صناعة محتوى إيجابي مضاد للكراهية',
-            duration: '2-3 أيام',
-            target: 'صناع محتوى، إعلاميون',
+            icon: IconSparkles,
+            key: 'counterSpeech',
             color: 'pink'
         }
     ];
 
+    const formats = [
+        { icon: IconFaceToFace, key: 'faceToFace' },
+        { icon: IconOnline, key: 'online' },
+        { icon: IconLightning, key: 'shortSessions' },
+        { icon: IconTarget, key: 'trainers' }
+    ];
+
+    const audiences = ['civilSociety', 'media', 'youth'];
+
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-[#F9FAFB]">
             <AppHeader />
 
-            <section className="py-20 bg-white">
-                <div className="max-w-6xl mx-auto px-6">
-                    {/* Header */}
-                    <div className="text-center mb-16">
-                        <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                            🎓 التدريبات المتخصصة
-                        </h1>
-                        <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                            توفّر المبادرة <strong>برامج تدريبية متخصصة</strong> تهدف إلى تعزيز قدرات الأفراد والمنظمات السورية على فهم خطاب الكراهية ورصده والتعامل مع مخاطره.
+            <PageHero
+                icon="🎓"
+                title={t('title')}
+                subtitle={t('subtitle')}
+            />
+
+            <main className="container mx-auto px-4 py-16">
+                <div className="max-w-6xl mx-auto space-y-20">
+
+                    {/* Quote */}
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 p-10 rounded-3xl border border-green-100 text-center shadow-sm">
+                        <p className="text-2xl font-bold text-gray-800 leading-relaxed italic">
+                            &quot;{t('quote')}&quot;
                         </p>
-                        <div className="bg-green-50 border-r-4 border-green-600 p-6 rounded-xl max-w-2xl mx-auto mt-8">
-                            <p className="text-2xl font-bold text-gray-900">
-                                &quot;نبني الوعي… نصنع الأمان… نحو مجتمعات سورية صامدة&quot;
-                            </p>
-                        </div>
                     </div>
 
                     {/* Programs */}
-                    <div className="mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">برامجنا التدريبية</h2>
-                        <div className="space-y-8">
+                    <div>
+                        <div className="flex items-center gap-4 mb-10 justify-center">
+                            <span className="bg-blue-100 p-3 rounded-xl text-2xl">📚</span>
+                            <h2 className="text-4xl font-bold text-gray-900">{t('programsTitle')}</h2>
+                        </div>
+                        <div className="grid gap-8">
                             {programs.map((program, index) => (
-                                <div key={index} className={`bg-gradient-to-br from-${program.color}-50 to-white p-8 rounded-2xl shadow-lg border border-${program.color}-200 hover:shadow-xl transition-all`}>
-                                    <div className="flex items-start gap-6">
-                                        <div className="text-6xl">{program.icon}</div>
+                                <div key={index} className={`bg-white p-8 rounded-2xl shadow-sm border border-${program.color}-100 hover:shadow-lg hover:border-${program.color}-300 transition-all group`}>
+                                    <div className="flex flex-col md:flex-row items-start gap-8">
+                                        <div className={`bg-${program.color}-50 p-6 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                                            <program.icon />
+                                        </div>
                                         <div className="flex-1">
-                                            <h3 className="text-3xl font-bold text-gray-900 mb-3">{program.title}</h3>
-                                            <p className="text-lg text-gray-700 mb-4">{program.description}</p>
-                                            <div className="flex gap-6 text-sm">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-bold text-gray-900">⏱️ المدة:</span>
-                                                    <span className="text-gray-700">{program.duration}</span>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#1E8C4E] transition-colors">
+                                                {t(`programs.${program.key}.title`)}
+                                            </h3>
+                                            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                                                {t(`programs.${program.key}.description`)}
+                                            </p>
+                                            <div className="flex flex-wrap gap-6 text-sm">
+                                                <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                                                    <span className="text-xl">⏱️</span>
+                                                    <div>
+                                                        <span className="font-bold text-gray-900 block">{t('durationLabel')}</span>
+                                                        <span className="text-gray-600">{t(`programs.${program.key}.duration`)}</span>
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-bold text-gray-900">👥 الفئة المستهدفة:</span>
-                                                    <span className="text-gray-700">{program.target}</span>
+                                                <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                                                    <span className="text-xl">👥</span>
+                                                    <div>
+                                                        <span className="font-bold text-gray-900 block">{t('targetLabel')}</span>
+                                                        <span className="text-gray-600">{t(`programs.${program.key}.target`)}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,40 +167,41 @@ export default function TrainingPage() {
                     </div>
 
                     {/* Training Formats */}
-                    <div className="mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">أشكال التدريب</h2>
+                    <div>
+                        <div className="flex items-center gap-4 mb-10 justify-center">
+                            <span className="bg-purple-100 p-3 rounded-xl text-2xl">🛠️</span>
+                            <h2 className="text-4xl font-bold text-gray-900">{t('formatsTitle')}</h2>
+                        </div>
                         <div className="grid md:grid-cols-4 gap-6">
-                            {[
-                                { icon: '👥', title: 'وجهاً لوجه', desc: 'تدريب مباشر في قاعات' },
-                                { icon: '💻', title: 'عبر الإنترنت', desc: 'جلسات تفاعلية أونلاين' },
-                                { icon: '⚡', title: 'جلسات قصيرة', desc: 'ورش عمل مكثفة' },
-                                { icon: '🎯', title: 'تدريب المدربين', desc: 'بناء قدرات المدربين' }
-                            ].map((format, index) => (
-                                <div key={index} className="bg-white p-6 rounded-xl shadow-md text-center border border-gray-200">
-                                    <div className="text-4xl mb-3">{format.icon}</div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{format.title}</h3>
-                                    <p className="text-sm text-gray-600">{format.desc}</p>
+                            {formats.map((format, index) => (
+                                <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md hover:-translate-y-1 transition-all">
+                                    <div className="bg-gray-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <format.icon />
+                                    </div>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{t(`formats.${format.key}.title`)}</h3>
+                                    <p className="text-gray-600">{t(`formats.${format.key}.desc`)}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Target Audience */}
-                    <div className="mb-16">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">الجمهور المستهدف</h2>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {[
-                                { title: 'منظمات المجتمع المدني', items: ['فرق الحماية', 'المنظمات الإنسانية', 'مبادرات محلية'] },
-                                { title: 'الإعلاميون والباحثون', items: ['صحفيون', 'باحثون', 'طلاب جامعات'] },
-                                { title: 'الشباب والناشطون', items: ['مبادرات شبابية', 'ناشطون رقميون', 'قيادات مجتمعية'] }
-                            ].map((group, index) => (
-                                <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4">{group.title}</h3>
-                                    <ul className="space-y-2">
-                                        {group.items.map((item, idx) => (
-                                            <li key={idx} className="flex items-center gap-2 text-gray-700">
-                                                <span className="text-green-600">✓</span>
-                                                <span>{item}</span>
+                    <div>
+                        <div className="flex items-center gap-4 mb-10 justify-center">
+                            <span className="bg-orange-100 p-3 rounded-xl text-2xl">🎯</span>
+                            <h2 className="text-4xl font-bold text-gray-900">{t('audienceTitle')}</h2>
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {audiences.map((audienceKey, index) => (
+                                <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4">
+                                        {t(`audience.${audienceKey}.title`)}
+                                    </h3>
+                                    <ul className="space-y-4">
+                                        {(t.raw(`audience.${audienceKey}.items`) as string[]).map((item: string, idx: number) => (
+                                            <li key={idx} className="flex items-start gap-3 text-gray-700">
+                                                <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">✓</span>
+                                                <span className="mt-0.5">{item}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -143,63 +211,33 @@ export default function TrainingPage() {
                     </div>
 
                     {/* Why Important */}
-                    <div>
-                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">لماذا هذه البرامج مهمة؟</h2>
-                        <div className="bg-gradient-to-r from-blue-50 to-green-50 p-10 rounded-3xl">
-                            <ul className="space-y-4 text-lg text-gray-800">
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-600 text-2xl">✓</span>
-                                    <span>جزء كبير من العنف في سوريا <strong>بدأ بالكلمة</strong></span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-600 text-2xl">✓</span>
-                                    <span>التدريب يساعد على <strong>بناء وعي مجتمعي</strong></span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-600 text-2xl">✓</span>
-                                    <span><strong>حماية الفئات المستهدفة</strong> من خطاب الكراهية</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <p className="text-gray-700 mb-4">
-                                        ورشة عمل تفاعلية للصحفيين وصناع المحتوى حول كيفية تغطية النزاعات دون الانزلاق إلى لغة التحريض. تشمل تحليل حالات دراسية وتطبيق عملي على &quot;صحافة السلام&quot;.
-                                    </p></li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-600 text-2xl">✓</span>
-                                    <span>رفع قدرات المنظمات على <strong>التعامل مع الخطاب الضار</strong></span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-600 text-2xl">✓</span>
-                                    <span>دعم <strong>التماسك الاجتماعي</strong> والعيش المشترك</span>
-                                </li>
-                            </ul>
+                    <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">{t('importanceTitle')}</h2>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {(t.raw('importance') as string[]).map((item: string, index: number) => (
+                                <div key={index} className="flex items-start gap-4 bg-gray-50 p-4 rounded-xl">
+                                    <span className="text-green-600 text-2xl mt-1">✓</span>
+                                    <span className="text-gray-700 text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
+                                </div>
+                            ))}
                         </div>
                     </div>
 
                     {/* CTA */}
-                    <div className="mt-16 text-center bg-gradient-to-r from-green-600 to-blue-600 p-10 rounded-3xl text-white">
-                        <h3 className="text-3xl font-bold mb-4">هل أنت مهتم بالتدريب؟</h3>
-                        <p className="text-xl mb-8">تواصل معنا لمعرفة المزيد عن برامجنا التدريبية</p>
-                        <a href="#contact" className="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg">
-                            اتصل بنا
-                        </a>
+                    <div className="bg-gradient-to-br from-[#1E8C4E] to-[#166639] p-12 rounded-3xl text-center shadow-lg text-white relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('/pattern.svg')]"></div>
+                        <div className="relative z-10">
+                            <h3 className="text-4xl font-bold mb-6">{t('ctaTitle')}</h3>
+                            <p className="text-xl text-green-50 mb-10 max-w-2xl mx-auto">{t('ctaSubtitle')}</p>
+                            <a href="mailto:info@balagh.org" className="inline-block bg-white text-[#1E8C4E] px-12 py-5 rounded-xl font-bold text-xl hover:bg-gray-50 hover:shadow-xl transition-all transform hover:-translate-y-1">
+                                {t('ctaButton')}
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </main>
 
-            <footer id="contact" className="bg-gray-900 text-white py-12">
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                    <h3 className="text-2xl font-bold mb-4">اتصل بنا</h3>
-                    <p className="text-gray-400 mb-6">للاستفسارات والشراكات والإبلاغ عن المحتوى</p>
-                    <div className="flex justify-center gap-6">
-                        <a href="mailto:info@balagh.org" className="text-green-400 hover:text-green-300 transition-colors">
-                            info@balagh.org
-                        </a>
-                    </div>
-                    <div className="mt-8 pt-8 border-t border-gray-800 text-gray-500 text-sm">
-                        © 2024 مبادرة مكافحة خطاب العنف والكراهية - جميع الحقوق محفوظة
-                    </div>
-                </div>
-            </footer>
+            <AppFooter />
         </div>
     );
 }

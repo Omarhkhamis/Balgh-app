@@ -120,6 +120,26 @@ export default function AboutSection() {
                 </div>
 
 
+                {/* Volunteer Section */}
+                <div className="mb-16 bg-gradient-to-br from-purple-50 to-indigo-50 p-10 rounded-2xl border-2 border-purple-200 text-center">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">كن شريكاً في التغيير</h3>
+                    <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        نؤمن بأن مواجهة خطاب الكراهية مسؤولية جماعية. إذا كنت باحثاً، مطوراً تقنياً، قانونياً، أو ناشطاً مدنياً، وترغب في استثمار مهاراتك لبناء فضاء رقمي سوري آمن وشامل، فإن مبادرة <strong>بَلِّغ</strong> تفتح لك أبواب التطوع لتكون جزءاً من الحل.
+                    </p>
+                    <a href="mailto:info@balagh.org?subject=طلب تطوع" className="inline-block bg-purple-600 text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-purple-700 hover:shadow-lg transition-all transform hover:scale-105">
+                        تطوع معنا
+                    </a>
+                </div>
+
+                {/* Contact CTA */}
+                <div className="bg-gradient-to-br from-green-50 to-blue-50 p-10 rounded-2xl border-2 border-green-200 text-center">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">تواصل معنا</h3>
+                    <p className="text-lg text-gray-700 mb-6">للاستفسارات، الشراكات، أو الإبلاغ عن محتوى مسيء:</p>
+                    <a href="mailto:info@balagh.org" className="inline-block bg-gradient-to-r from-green-600 to-blue-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105">
+                        📧 info@balagh.org
+                    </a>
+                </div>
+
             </div>
         </section>
     );

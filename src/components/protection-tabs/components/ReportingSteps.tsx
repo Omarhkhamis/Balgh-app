@@ -1,30 +1,33 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function ReportingSteps() {
+    const t = useTranslations('protection.content.tools.reporting');
+
     const steps = [
         {
             number: 1,
-            title: 'التوثيق الإضافي',
-            description: 'وثّق المنشور كاملاً: خذ لقطة شاشة تتضمن الرابط، التاريخ، اسم الحساب، والمحتوى الكامل.',
-            tips: ['احفظ الصورة بتاريخ واضح', 'سجل الرابط المباشر', 'وثق أي تعليقات مسيئة'],
+            title: t('steps.1.title'),
+            description: t('steps.1.desc'),
+            tips: [t('steps.1.tips.0'), t('steps.1.tips.1'), t('steps.1.tips.2')],
             icon: '📸',
             color: 'blue'
         },
         {
             number: 2,
-            title: 'البلاغ الداخلي',
-            description: 'أرسل البلاغ داخل المنصة (فيسبوك، تويتر، إنستغرام، إلخ) باستخدام خيار "Report" أو "إبلاغ".',
-            tips: ['اختر "خطاب كراهية" كسبب', 'كن محدداً في الوصف', 'تابع حالة البلاغ'],
+            title: t('steps.2.title'),
+            description: t('steps.2.desc'),
+            tips: [t('steps.2.tips.0'), t('steps.2.tips.1'), t('steps.2.tips.2')],
             icon: '🚩',
             color: 'orange'
         },
         {
             number: 3,
-            title: 'التواصل الحقوقي',
-            description: 'شارك الحالة (إن رغبت) مع الجهات المتخصصة أو المبادرات الحقوقية التي تعمل على توثيق الانتهاكات الرقمية.',
-            tips: ['راجع صفحة القوانين للجهات المختصة', 'احتفظ بنسخة من التوثيق', 'لا تشارك معلومات شخصية حساسة'],
+            title: t('steps.3.title'),
+            description: t('steps.3.desc'),
+            tips: [t('steps.3.tips.0'), t('steps.3.tips.1'), t('steps.3.tips.2')],
             icon: '⚖️',
             color: 'green'
         }
@@ -71,7 +74,7 @@ export default function ReportingSteps() {
             {/* Important Note */}
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-xl">
                 <p className="text-lg font-bold text-center">
-                    ⚠️ تذكر: عملية التبليغ ليست إجراءً عقابياً، بل أداة حماية مجتمعية
+                    {t('note')}
                 </p>
             </div>
         </div>

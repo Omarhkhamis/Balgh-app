@@ -6,7 +6,10 @@ import AppHeader from '../../../components/AppHeader';
 import ResultsDisplay from '../../../components/ResultsDisplay';
 import { Suspense } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 function MonitoringContent() {
+    const t = useTranslations('monitoring');
     const searchParams = useSearchParams();
     const resultData = searchParams.get('result');
 
@@ -25,10 +28,10 @@ function MonitoringContent() {
             <main className="container mx-auto px-4 py-16">
                 <div className="text-center mb-16">
                     <h1 className="text-5xl font-bold mb-4" style={{ color: '#1A1A1A' }}>
-                        الرصد والتبليغات
+                        {t('title')}
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        نتائج التحليل وخيارات التبليغ عن المحتوى المخالف
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -39,11 +42,11 @@ function MonitoringContent() {
                         <svg className="w-24 h-24 mx-auto text-gray-300 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <h2 className="text-2xl font-bold text-gray-700 mb-2">لا توجد نتائج</h2>
-                        <p className="text-gray-500 mb-6">قم بتحليل نص أولاً لعرض النتائج هنا</p>
+                        <h2 className="text-2xl font-bold text-gray-700 mb-2">{t('noResultsTitle')}</h2>
+                        <p className="text-gray-500 mb-6">{t('noResultsDesc')}</p>
                         <Link href="/" className="inline-flex items-center gap-2 bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
                             <span>🔍</span>
-                            <span>حلّل محتوى الآن</span>
+                            <span>{t('analyzeButton')}</span>
                         </Link>
                     </div>
                 )}
