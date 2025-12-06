@@ -1,46 +1,39 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
-import { useTransition } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+const SUPPORTED_LOCALES = ['ar', 'en', 'ku'] as const;
 
 export default function LanguageSwitcher() {
     const locale = useLocale();
-    const router = useRouter();
     const pathname = usePathname();
-    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
-    const handleLanguageSwitch = () => {
-        const newLocale = locale === 'ar' ? 'en' : 'ar';
-        const currentPath = window.location.pathname.replace(`/${locale}`, '');
-
-        // Force full page reload to ensure proper direction change
-        window.location.replace(`/${newLocale}${currentPath || '/'}`);
+    const handleChange = (nextLocale: (typeof SUPPORTED_LOCALES)[number]) => {
+        if (nextLocale === locale) return;
+        const barePath = pathname.replace(/^\/(ar|en|ku)(?=\/|$)/, '') || '/';
+        router.replace(`/${nextLocale}${barePath}`);
+        router.refresh();
     };
 
     return (
-        <button
-            onClick={handleLanguageSwitch}
-            disabled={isPending}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-100 hover:bg-green-200 transition-colors font-medium text-sm border border-green-300"
-            style={{ color: '#2A8F5A' }}
-            title={locale === 'ar' ? 'Switch to English' : 'التبديل للعربية'}
-        >
-            {locale === 'ar' ? (
-                <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                    </svg>
-                    <span className="font-bold">English</span>
-                </>
-            ) : (
-                <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                    </svg>
-                    <span className="font-bold">العربية</span>
-                </>
-            )}
-        </button>
+        <div className="flex items-center gap-2">
+            {SUPPORTED_LOCALES.map((lng) => (
+                <button
+                    key={lng}
+                    onClick={() => handleChange(lng)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+                        locale === lng
+                            ? 'bg-green-600 text-white border-green-600'
+                            : 'bg-white text-gray-700 border-gray-200 hover:border-green-400 hover:text-green-600'
+                    }`}
+                    aria-pressed={locale === lng}
+                    aria-label={`Switch to ${lng}`}
+                >
+                    {lng.toUpperCase()}
+                </button>
+            ))}
+        </div>
     );
 }
