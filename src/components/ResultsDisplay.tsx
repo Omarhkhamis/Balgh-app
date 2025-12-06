@@ -97,7 +97,6 @@ export default function ResultsDisplay({ result }: { result: AnalysisResult }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     text: result.text || '',
-                    text: result.text || '',
                     classification: result.classification,
                     severity_score: result.severity_score,
                     risk_level: result.risk_level,

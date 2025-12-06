@@ -4,9 +4,11 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { locales, type Locale } from '../../i18n.config';
 import '../globals.css';
 
+type LayoutParams = { locale: Locale };
 type LayoutProps = {
     children: ReactNode;
-    params: { locale: Locale };
+    // Next.js provides params as a Promise in app layouts
+    params: Promise<LayoutParams>;
 };
 
 export function generateStaticParams() {
@@ -14,7 +16,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: LayoutProps) {
-    const messages = await getMessages({ locale: params.locale }) as Record<string, unknown>;
+    const { locale } = await params;
+    const messages = await getMessages({ locale }) as Record<string, unknown>;
 
     return {
         title: (messages.metadata as Record<string, string>)?.title || 'А?Б?Б?А? - Б?А?А?А?А?А? Б?Б?А?Б?А?А? А?АЗА?А? А?Б?А?Б?Б? Б?А?Б?Б?А?А?Б?Б?А?',
@@ -23,7 +26,7 @@ export async function generateMetadata({ params }: LayoutProps) {
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
-    const requestedLocale = params.locale;
+    const { locale: requestedLocale } = await params;
 
     // Fallback gracefully in root layout (notFound not allowed)
     const locale = locales.includes(requestedLocale) ? requestedLocale : 'ar';

@@ -36,7 +36,6 @@ export default function InteractiveLegalMap({ selectedCountry, onSelectCountry }
                 className={`absolute transition-all duration-300 ${hoveredCountry === country ? 'scale-125 z-50' : 'hover:scale-110 z-10'
                     }`}
                 style={{ top, left, transform: 'translate(-50%, -50%)' }}
-                style={{ top, left, transform: 'translate(-50%, -50%)' }}
                 aria-label={tCountries(country)}
             >
                 <div className={`${sizeClasses[size]} rounded-full bg-white border-3 ${hoveredCountry === country

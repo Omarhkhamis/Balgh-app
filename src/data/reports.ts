@@ -1,15 +1,18 @@
 
 export type ReportCategory = 'initiative' | 'analytical' | 'study';
 
+type LocalizedText = { ar: string; en: string; ku?: string };
+type LocalizedTags = { ar: string[]; en: string[]; ku?: string[] };
+
 export interface ReportItem {
     id: number;
-    title: { ar: string; en: string };
+    title: LocalizedText;
     date: string;
-    description: { ar: string; en: string };
+    description: LocalizedText;
     image?: string;
     fileUrl?: string; // URL to the PDF or external report
-    author?: { ar: string; en: string };
-    tags?: { ar: string[]; en: string[] };
+    author?: LocalizedText;
+    tags?: LocalizedTags;
     category: ReportCategory;
 }
 
