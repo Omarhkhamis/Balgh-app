@@ -4,31 +4,28 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { locales, type Locale } from '../../i18n.config';
 import '../globals.css';
 
-type Props = {
+type LayoutProps = {
     children: ReactNode;
-    params: Promise<{ locale: Locale }> | { locale: Locale };
+    params: { locale: Locale };
 };
 
 export function generateStaticParams() {
     return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata(props: Props) {
-    const params = await props.params;
+export async function generateMetadata({ params }: LayoutProps) {
     const messages = await getMessages({ locale: params.locale }) as Record<string, unknown>;
 
     return {
-        title: (messages.metadata as Record<string, string>)?.title || 'بلّغ - مبادرة مكافحة خطاب العنف والكراهية',
-        description: (messages.metadata as Record<string, string>)?.description || 'أداة تحليل تعتمد على الذكاء الاصطناعي',
+        title: (messages.metadata as Record<string, string>)?.title || 'А?Б?Б?А? - Б?А?А?А?А?А? Б?Б?А?Б?А?А? А?АЗА?А? А?Б?А?Б?Б? Б?А?Б?Б?А?А?Б?Б?А?',
+        description: (messages.metadata as Record<string, string>)?.description || 'А°А?А?А? А?А?Б?Б?Б? А?А?А?Б?А? А?Б?Б? А?Б?АЬБ?А?А? А?Б?А?АФАЗБ?А?А?Б?',
     };
 }
 
-export default async function LocaleLayout(props: Props) {
-    // Support both promised and plain params (Next passes plain object)
-    const resolvedParams = props.params instanceof Promise ? await props.params : props.params;
-    const requestedLocale = resolvedParams.locale;
+export default async function LocaleLayout({ children, params }: LayoutProps) {
+    const requestedLocale = params.locale;
 
-    // Gracefully fallback instead of throwing (notFound not allowed in root layout)
+    // Fallback gracefully in root layout (notFound not allowed)
     const locale = locales.includes(requestedLocale) ? requestedLocale : 'ar';
 
     // Scope SSR to the requested/fallback locale before reading messages
@@ -37,13 +34,10 @@ export default async function LocaleLayout(props: Props) {
 
     return (
         <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-            <body className={`antialiased bg-gray-50 text-gray-900 font-sans`}>
+            <body className="antialiased bg-gray-50 text-gray-900 font-sans">
                 <div className="bg-noise"></div>
-                <NextIntlClientProvider
-                    locale={locale}
-                    messages={messages}
-                >
-                    {props.children}
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                    {children}
                 </NextIntlClientProvider>
             </body>
         </html>
