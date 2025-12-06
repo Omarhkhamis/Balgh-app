@@ -28,18 +28,15 @@ export async function generateMetadata({ params }: LayoutProps) {
 export default async function LocaleLayout({ children, params }: LayoutProps) {
     const { locale: requestedLocale } = await params;
 
-    // Fallback gracefully in root layout (notFound not allowed)
-    const locale = locales.includes(requestedLocale) ? requestedLocale : 'ar';
-
-    // Scope SSR to the requested/fallback locale before reading messages
-    setRequestLocale(locale);
+    // Scope SSR to the requested locale before reading messages
+    setRequestLocale(requestedLocale);
     const messages = await getMessages();
 
     return (
-        <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <html lang={requestedLocale} dir={requestedLocale === 'ar' ? 'rtl' : 'ltr'}>
             <body className="antialiased bg-gray-50 text-gray-900 font-sans">
                 <div className="bg-noise"></div>
-                <NextIntlClientProvider locale={locale} messages={messages}>
+                <NextIntlClientProvider locale={requestedLocale} messages={messages}>
                     {children}
                 </NextIntlClientProvider>
             </body>
