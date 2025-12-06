@@ -28,6 +28,8 @@ export default function InteractiveLegalMap({ selectedCountry, onSelectCountry }
             lg: 'w-14 h-14 text-3xl'
         };
 
+        const positionStyle = { top, left, transform: 'translate(-50%, -50%)' as const };
+
         return (
             <button
                 onClick={() => handleCountryClick(country)}
@@ -35,7 +37,7 @@ export default function InteractiveLegalMap({ selectedCountry, onSelectCountry }
                 onMouseLeave={() => setHoveredCountry(null)}
                 className={`absolute transition-all duration-300 ${hoveredCountry === country ? 'scale-125 z-50' : 'hover:scale-110 z-10'
                     }`}
-                style={{ top, left, transform: 'translate(-50%, -50%)' }}
+                style={positionStyle}
                 aria-label={tCountries(country)}
             >
                 <div className={`${sizeClasses[size]} rounded-full bg-white border-3 ${hoveredCountry === country
