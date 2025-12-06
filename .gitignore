@@ -26,5 +26,5 @@ tsconfig.tsbuildinfo
 output*.json
 
 # local env files
-.env*
+*.env
 .vercel
